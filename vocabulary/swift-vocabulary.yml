@@ -1,0 +1,170 @@
+name: SWIFT Vocabulary
+description: >-
+  Domain vocabulary for SWIFT (Society for Worldwide Interbank Financial
+  Telecommunication) covering financial messaging, payment tracking, and
+  reference data terminology used across SWIFT APIs and services.
+version: '1.0'
+created: '2026-05-03'
+modified: '2026-05-03'
+provider: SWIFT
+url: https://www.swift.com
+
+terms:
+  - term: BIC
+    definition: >-
+      Bank Identifier Code. An 8 or 11 character code that uniquely identifies
+      a financial institution in the SWIFT network. Format: 4-letter bank code
+      + 2-letter country code + 2-letter location code + optional 3-letter
+      branch code. Also called SWIFT Code.
+    tags:
+      - Reference Data
+      - Routing
+
+  - term: IBAN
+    definition: >-
+      International Bank Account Number. A standardized format for identifying
+      bank accounts internationally. Consists of a 2-letter country code, 2
+      check digits, and a country-specific BBAN (Basic Bank Account Number).
+      Max 34 characters.
+    tags:
+      - Account Identification
+      - Reference Data
+
+  - term: BBAN
+    definition: >-
+      Basic Bank Account Number. The domestic portion of an IBAN after the
+      country code and check digits. Format varies by country and includes
+      bank code, branch code, and account number components.
+    tags:
+      - Account Identification
+      - Reference Data
+
+  - term: LEI
+    definition: >-
+      Legal Entity Identifier. A 20-character alphanumeric code that uniquely
+      identifies legal entities participating in financial transactions globally.
+      Maintained by GLEIF (Global Legal Entity Identifier Foundation). Used for
+      regulatory reporting and entity verification.
+    tags:
+      - Compliance
+      - Entity Identification
+      - Reference Data
+
+  - term: UETR
+    definition: >-
+      Unique End-to-End Transaction Reference. A UUID-format identifier assigned
+      to each GPI payment at origination that follows the payment through its
+      entire lifecycle. Used by the SWIFT GPI Tracker to provide real-time
+      payment tracking.
+    tags:
+      - GPI
+      - Payment Tracking
+      - Traceability
+
+  - term: GPI
+    definition: >-
+      Global Payments Innovation. SWIFT's service that enhances cross-border
+      payment tracking, speed, and transparency. GPI payments carry a UETR and
+      are tracked end-to-end by the GPI Tracker, providing real-time status
+      updates to sending and receiving banks.
+    tags:
+      - Cross-Border Payments
+      - GPI
+      - Payments
+
+  - term: SwiftRef
+    definition: >-
+      SWIFT's reference data service providing daily-updated authoritative
+      information on BICs, IBANs, LEIs, National IDs, country codes, and
+      currency codes. Available via the SwiftRef API for automated real-time
+      lookup and validation.
+    tags:
+      - Reference Data
+      - Validation
+
+  - term: ISO 20022
+    definition: >-
+      International standard for financial messaging developed by ISO. Defines
+      a common XML-based message format for financial transactions including
+      payments, securities, and trade finance. SWIFT mandates ISO 20022 adoption
+      for cross-border payments from November 2025.
+    tags:
+      - Financial Standards
+      - Messaging
+      - Standards
+
+  - term: National ID
+    definition: >-
+      A domestic clearing code or routing number used to route payments within
+      a country's payment system. Examples include ABA routing numbers (US),
+      Sort Codes (UK), BLZ (Germany), and BSB numbers (Australia).
+    tags:
+      - Clearing
+      - Domestic Payments
+      - Reference Data
+
+  - term: SSI
+    definition: >-
+      Standard Settlement Instructions. Pre-agreed payment instructions between
+      counterparties that specify the accounts and banks to use for settling
+      specific transaction types, currencies, and relationships.
+    tags:
+      - Settlement
+      - Payments
+
+  - term: STP
+    definition: >-
+      Straight-Through Processing. Automated processing of financial transactions
+      without manual intervention. Higher STP rates are achieved by validating
+      payment data (BICs, IBANs, routing codes) before submission using APIs
+      like SwiftRef.
+    tags:
+      - Automation
+      - Payments
+      - Processing
+
+  - term: Stop and Recall
+    definition: >-
+      A SWIFT GPI service that allows sending banks to request cancellation of
+      an in-flight cross-border payment. The GPI Stop and Recall API (gSRP)
+      enables programmatic cancellation requests.
+    tags:
+      - GPI
+      - Payment Management
+
+  - term: Payment Pre-validation
+    definition: >-
+      SWIFT's service for verifying payment instruction data before a payment
+      is executed. Checks account validity, BIC reachability, and beneficiary
+      information to reduce payment failures and returned payments.
+    tags:
+      - Pre-validation
+      - Risk Management
+
+  - term: OAuth 2.0 JWT Bearer
+    definition: >-
+      The authentication method required for SWIFT API access. Applications
+      must generate a JWT-Bearer grant type per RFC 7523 using their SWIFT
+      client credentials to obtain OAuth 2.0 access tokens.
+    tags:
+      - Authentication
+      - Security
+
+  - term: SEPA
+    definition: >-
+      Single Euro Payments Area. A European Union payment integration initiative
+      enabling eurozone citizens and businesses to make cashless euro payments
+      with the same conditions as domestic payments. SWIFT SwiftRef can validate
+      SEPA reachability for BICs.
+    tags:
+      - European Payments
+      - Standards
+
+  - term: Correspondent Banking
+    definition: >-
+      An arrangement where a bank holds deposits and provides services for
+      another bank, typically for cross-border transactions. SWIFT GPI tracks
+      payments through correspondent bank chains using UETR.
+    tags:
+      - Banking
+      - Cross-Border Payments

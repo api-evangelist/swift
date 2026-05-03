@@ -1,0 +1,87 @@
+extends: [[spectral:oas, all]]
+
+rules:
+  # SWIFT APIs use OAuth2 authentication
+  swift-oauth2-security:
+    description: SWIFT API endpoints must use OAuth2 security scheme
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      field: OAuth2
+      function: truthy
+
+  # All path parameters for financial identifiers must have patterns
+  swift-identifier-pattern:
+    description: Financial identifier path parameters must have regex pattern validation
+    severity: warn
+    given: "$.components.parameters[?(@.in == 'path')].schema"
+    then:
+      field: pattern
+      function: truthy
+
+  # All paths must be versioned with /v2/ prefix
+  swift-versioned-paths:
+    description: SWIFT API paths should include version prefix (/v2/)
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]+"
+
+  # Operation IDs must use camelCase
+  swift-operation-id-camel-case:
+    description: Operation IDs must use camelCase naming convention
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  # All operations must have summaries using Title Case
+  swift-summary-title-case:
+    description: Operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9 ]+$"
+
+  # GET endpoints for validation should return ValidityResult schema
+  swift-validity-response:
+    description: Validation endpoints should return a validity result with a 'valid' boolean
+    severity: hint
+    given: "$.paths[?(@property.endsWith('validity'))].get.responses.200.content.application/json.schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required:
+            - properties
+          properties:
+            properties:
+              type: object
+              required:
+                - valid
+
+  # 404 responses should be defined for lookup endpoints
+  swift-not-found-response:
+    description: GET lookup endpoints should document 404 responses
+    severity: warn
+    given: "$.paths[*].get.responses"
+    then:
+      field: '404'
+      function: truthy
+
+  # Operations must have at least one tag
+  swift-operation-tags:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy

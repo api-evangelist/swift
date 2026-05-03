@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/json-schema/swift-iban-schema.json",
+  "title": "SWIFT IBAN",
+  "description": "Schema for an IBAN record from the SWIFT SwiftRef API",
+  "type": "object",
+  "properties": {
+    "iban": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$",
+      "description": "International Bank Account Number (without spaces)"
+    },
+    "bic": {
+      "type": "string",
+      "description": "BIC associated with this IBAN"
+    },
+    "countryCode": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 country code from IBAN"
+    },
+    "bankCode": {
+      "type": "string",
+      "description": "Bank code extracted from the IBAN"
+    },
+    "accountNumber": {
+      "type": "string",
+      "description": "Account number portion of the IBAN"
+    },
+    "valid": {
+      "type": "boolean",
+      "description": "Whether IBAN passes format and check digit validation"
+    }
+  },
+  "required": ["iban", "countryCode"]
+}

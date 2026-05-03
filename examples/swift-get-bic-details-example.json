@@ -1,0 +1,23 @@
+{
+  "summary": "Get BIC details",
+  "description": "Example of looking up BIC details for Deutsche Bank Frankfurt",
+  "request": {
+    "method": "GET",
+    "url": "https://api.swift.com/swiftrefdata/v2/bics/DEUTDEDB",
+    "headers": {
+      "Authorization": "Bearer your-oauth-access-token"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "bic": "DEUTDEDB",
+      "institutionName": "DEUTSCHE BANK AG",
+      "countryCode": "DE",
+      "city": "FRANKFURT AM MAIN",
+      "address": "TAUNUSANLAGE 12",
+      "status": "ACTIVE",
+      "connectedToBIC": true
+    }
+  }
+}

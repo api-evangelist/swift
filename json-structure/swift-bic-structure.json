@@ -1,0 +1,17 @@
+{
+  "name": "SwiftBIC",
+  "description": "A SWIFT Bank Identifier Code record with institution details",
+  "fields": [
+    { "name": "bic", "type": "string", "description": "8 or 11 character BIC" },
+    { "name": "institutionName", "type": "string", "description": "Financial institution name" },
+    { "name": "countryCode", "type": "string", "description": "ISO 3166-1 alpha-2 country code" },
+    { "name": "city", "type": "string", "description": "Institution city" },
+    { "name": "address", "type": "string", "description": "Institution address" },
+    { "name": "status", "type": "string", "description": "ACTIVE, PASSIVE, or DELISTED" },
+    { "name": "connectedToBIC", "type": "boolean", "description": "Connected to SWIFT network" }
+  ],
+  "relationships": [
+    { "name": "nationalIds", "type": "NationalId", "cardinality": "one-to-many" },
+    { "name": "lei", "type": "LEI", "cardinality": "one-to-one" }
+  ]
+}

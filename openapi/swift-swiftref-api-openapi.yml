@@ -1,0 +1,731 @@
+openapi: 3.1.0
+info:
+  title: SWIFT SwiftRef API
+  description: >-
+    The SWIFT SwiftRef API provides automated real-time lookup and validation
+    of payments reference data. Supports validation and retrieval of BICs,
+    IBANs, LEIs, National IDs, country codes, currency codes, and account
+    numbers. Enables financial institutions, corporates, and PSPs to achieve
+    greater straight-through processing rates by validating identifiers before
+    payment execution. Data is updated daily from authoritative sources.
+  version: 2.0.0
+  contact:
+    name: SWIFT Developer Support
+    email: developer-support@swift.com
+    url: https://developer.swift.com
+  termsOfService: https://developer.swift.com/terms
+externalDocs:
+  description: SWIFT SwiftRef API Documentation
+  url: https://developer.swift.com/apis/swiftref-api
+servers:
+  - url: https://api.swift.com/swiftrefdata
+    description: SWIFT SwiftRef Production API
+  - url: https://sandbox.swift.com/swiftrefdata
+    description: SWIFT SwiftRef Sandbox
+security:
+  - OAuth2: []
+tags:
+  - name: BICs
+    description: BIC (Bank Identifier Code) lookup and validation
+  - name: IBANs
+    description: IBAN (International Bank Account Number) lookup and validation
+  - name: LEIs
+    description: LEI (Legal Entity Identifier) lookup and validation
+  - name: National IDs
+    description: National ID lookup and BIC resolution
+  - name: Country Codes
+    description: Country code lookup and validation
+  - name: Currency Codes
+    description: Currency code lookup and validation
+  - name: Account Numbers
+    description: Account number format validation
+  - name: BBANs
+    description: BBAN to IBAN conversion
+paths:
+  /v2/bics/{bic}:
+    get:
+      operationId: getBic
+      summary: Get BIC Details
+      description: >-
+        Returns detailed information about a BIC (Bank Identifier Code)
+        including institution name, address, and connectivity status.
+      tags:
+        - BICs
+      parameters:
+        - $ref: '#/components/parameters/bic'
+      responses:
+        '200':
+          description: BIC details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BicDetails'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/bics/{bic}/validity:
+    get:
+      operationId: validateBic
+      summary: Validate BIC
+      description: >-
+        Checks the validity of a BIC code, confirming it is a registered and
+        active BIC in the SWIFT network.
+      tags:
+        - BICs
+      parameters:
+        - $ref: '#/components/parameters/bic'
+      responses:
+        '200':
+          description: BIC validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/bics/{bic}/lei:
+    get:
+      operationId: getBicLei
+      summary: Get LEI for BIC
+      description: Returns the Legal Entity Identifier (LEI) associated with a BIC.
+      tags:
+        - BICs
+      parameters:
+        - $ref: '#/components/parameters/bic'
+      responses:
+        '200':
+          description: LEI for the BIC
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  lei:
+                    type: string
+                    description: Legal Entity Identifier
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/bics/{bic}/national_ids:
+    get:
+      operationId: getBicNationalIds
+      summary: Get National IDs for BIC
+      description: Returns all National IDs associated with a BIC.
+      tags:
+        - BICs
+      parameters:
+        - $ref: '#/components/parameters/bic'
+      responses:
+        '200':
+          description: National IDs for the BIC
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NationalId'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/bics/{bic}/reachability:
+    get:
+      operationId: getBicSepaReachability
+      summary: Validate SEPA Reachability
+      description: >-
+        Validates whether a BIC is reachable via SEPA (Single Euro Payments
+        Area) credit transfer or direct debit schemes.
+      tags:
+        - BICs
+      parameters:
+        - $ref: '#/components/parameters/bic'
+      responses:
+        '200':
+          description: SEPA reachability status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachabilityResult'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/bics/{bic}/ssis:
+    get:
+      operationId: getBicSsis
+      summary: Get SSIs for BIC
+      description: >-
+        Returns Standard Settlement Instructions (SSIs) associated with
+        a BIC.
+      tags:
+        - BICs
+      parameters:
+        - $ref: '#/components/parameters/bic'
+      responses:
+        '200':
+          description: SSIs for the BIC
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/ibans/{iban}:
+    get:
+      operationId: getIban
+      summary: Get IBAN Details
+      description: >-
+        Returns details for an IBAN including the associated BIC, bank
+        name, and account holder country.
+      tags:
+        - IBANs
+      parameters:
+        - $ref: '#/components/parameters/iban'
+      responses:
+        '200':
+          description: IBAN details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IbanDetails'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/ibans/{iban}/validity:
+    get:
+      operationId: validateIban
+      summary: Validate IBAN
+      description: >-
+        Validates an IBAN by checking its format, check digits, country code,
+        and BBAN structure.
+      tags:
+        - IBANs
+      parameters:
+        - $ref: '#/components/parameters/iban'
+      responses:
+        '200':
+          description: IBAN validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v2/ibans/{iban}/bic:
+    get:
+      operationId: getBicForIban
+      summary: Get BIC for IBAN
+      description: Returns the BIC associated with a given IBAN.
+      tags:
+        - IBANs
+      parameters:
+        - $ref: '#/components/parameters/iban'
+      responses:
+        '200':
+          description: BIC for the IBAN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bic:
+                    type: string
+                    description: Bank Identifier Code
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/bbans/{bban}/iban:
+    get:
+      operationId: getIbanForBban
+      summary: Get IBAN for BBAN
+      description: >-
+        Converts a Basic Bank Account Number (BBAN) to the corresponding
+        IBAN format.
+      tags:
+        - BBANs
+      parameters:
+        - name: bban
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Basic Bank Account Number
+      responses:
+        '200':
+          description: IBAN for the BBAN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  iban:
+                    type: string
+                    description: International Bank Account Number
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/leis/{lei}:
+    get:
+      operationId: getLei
+      summary: Get LEI Details
+      description: >-
+        Returns details for a Legal Entity Identifier (LEI) including entity
+        name, legal address, and registration status.
+      tags:
+        - LEIs
+      parameters:
+        - $ref: '#/components/parameters/lei'
+      responses:
+        '200':
+          description: LEI details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeiDetails'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/leis/{lei}/validity:
+    get:
+      operationId: validateLei
+      summary: Validate LEI
+      description: >-
+        Checks whether a Legal Entity Identifier is valid and active in
+        the Global LEI System (GLEIF).
+      tags:
+        - LEIs
+      parameters:
+        - $ref: '#/components/parameters/lei'
+      responses:
+        '200':
+          description: LEI validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+  /v2/leis/{lei}/bic:
+    get:
+      operationId: getBicForLei
+      summary: Get BIC for LEI
+      description: Returns the BIC associated with a Legal Entity Identifier.
+      tags:
+        - LEIs
+      parameters:
+        - $ref: '#/components/parameters/lei'
+      responses:
+        '200':
+          description: BIC for the LEI
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bic:
+                    type: string
+  /v2/national_ids/{national_id}:
+    get:
+      operationId: getNationalId
+      summary: Get National ID Details
+      description: >-
+        Returns details for a National ID (clearing code, routing number)
+        used for domestic payment routing.
+      tags:
+        - National IDs
+      parameters:
+        - $ref: '#/components/parameters/nationalId'
+      responses:
+        '200':
+          description: National ID details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NationalIdDetails'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/national_ids/{national_id}/validity:
+    get:
+      operationId: validateNationalId
+      summary: Validate National ID
+      description: >-
+        Checks the validity of a National ID (clearing code or routing number).
+      tags:
+        - National IDs
+      parameters:
+        - $ref: '#/components/parameters/nationalId'
+      responses:
+        '200':
+          description: National ID validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+  /v2/national_ids/{national_id}/bics:
+    get:
+      operationId: getBicsForNationalId
+      summary: Get BICs for National ID
+      description: Returns the BIC(s) associated with a National ID.
+      tags:
+        - National IDs
+      parameters:
+        - $ref: '#/components/parameters/nationalId'
+      responses:
+        '200':
+          description: BICs for the National ID
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BicDetails'
+  /v2/iban_national_ids/{iban_national_id}/bic:
+    get:
+      operationId: getBicForIbanNationalId
+      summary: Get BIC for IBAN National ID
+      description: Returns the BIC associated with an IBAN national ID component.
+      tags:
+        - IBANs
+      parameters:
+        - name: iban_national_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: IBAN national ID component
+      responses:
+        '200':
+          description: BIC for the IBAN national ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bic:
+                    type: string
+  /v2/country_codes/{country_code}:
+    get:
+      operationId: getCountryCode
+      summary: Get Country Code Details
+      description: >-
+        Returns details for an ISO 3166-1 alpha-2 country code including
+        country name and IBAN structure.
+      tags:
+        - Country Codes
+      parameters:
+        - $ref: '#/components/parameters/countryCode'
+      responses:
+        '200':
+          description: Country code details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryCodeDetails'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/country_codes/{country_code}/validity:
+    get:
+      operationId: validateCountryCode
+      summary: Validate Country Code
+      description: Checks whether a country code is a valid ISO 3166-1 alpha-2 code.
+      tags:
+        - Country Codes
+      parameters:
+        - $ref: '#/components/parameters/countryCode'
+      responses:
+        '200':
+          description: Country code validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+  /v2/currency_codes/{currency_code}:
+    get:
+      operationId: getCurrencyCode
+      summary: Get Currency Code Details
+      description: >-
+        Returns details for an ISO 4217 currency code including currency
+        name and minor units.
+      tags:
+        - Currency Codes
+      parameters:
+        - $ref: '#/components/parameters/currencyCode'
+      responses:
+        '200':
+          description: Currency code details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyCodeDetails'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/currency_codes/{currency_code}/validity:
+    get:
+      operationId: validateCurrencyCode
+      summary: Validate Currency Code
+      description: Checks whether a currency code is a valid ISO 4217 code.
+      tags:
+        - Currency Codes
+      parameters:
+        - $ref: '#/components/parameters/currencyCode'
+      responses:
+        '200':
+          description: Currency code validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+  /v2/account_numbers/{account_number}/validity:
+    get:
+      operationId: validateAccountNumber
+      summary: Validate Account Number
+      description: >-
+        Checks the validity of various account number formats including
+        IBANs, checking account number format compliance.
+      tags:
+        - Account Numbers
+      parameters:
+        - name: account_number
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Account number to validate
+      responses:
+        '200':
+          description: Account number validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://api.swift.com/oauth2/v1/token
+          scopes:
+            'urn:swiftref:external': External customer access to SwiftRef data
+            'urn:swiftref:internal': Internal payment validation access
+  parameters:
+    bic:
+      name: bic
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?$'
+      description: 8 or 11 character BIC (Bank Identifier Code)
+      example: DEUTDEDB
+    iban:
+      name: iban
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$'
+      description: IBAN (International Bank Account Number) without spaces
+      example: DE89370400440532013000
+    lei:
+      name: lei
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[A-Z0-9]{20}$'
+      description: 20-character Legal Entity Identifier
+      example: 529900T8BM49AURSDO55
+    nationalId:
+      name: national_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: National ID clearing code or routing number
+    countryCode:
+      name: country_code
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[A-Z]{2}$'
+      description: ISO 3166-1 alpha-2 country code
+      example: DE
+    currencyCode:
+      name: currency_code
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[A-Z]{3}$'
+      description: ISO 4217 currency code
+      example: EUR
+  schemas:
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
+    BicDetails:
+      type: object
+      properties:
+        bic:
+          type: string
+          description: Bank Identifier Code
+        institutionName:
+          type: string
+          description: Name of the financial institution
+        countryCode:
+          type: string
+          description: ISO 3166-1 country code
+        city:
+          type: string
+          description: City where the institution is located
+        address:
+          type: string
+          description: Institution address
+        status:
+          type: string
+          description: BIC status (active, passive, etc.)
+        connectedToBIC:
+          type: boolean
+          description: Whether the BIC is connected to SWIFT network
+    IbanDetails:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: International Bank Account Number
+        bic:
+          type: string
+          description: Associated BIC
+        countryCode:
+          type: string
+          description: Country code from IBAN
+        bankCode:
+          type: string
+          description: Bank code extracted from IBAN
+        accountNumber:
+          type: string
+          description: Account number extracted from IBAN
+    LeiDetails:
+      type: object
+      properties:
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        legalName:
+          type: string
+          description: Legal entity name
+        legalAddress:
+          type: object
+          description: Legal address of the entity
+        registrationStatus:
+          type: string
+          description: LEI registration status (ISSUED, LAPSED, etc.)
+    NationalId:
+      type: object
+      properties:
+        nationalId:
+          type: string
+          description: National clearing code
+        type:
+          type: string
+          description: Type of national ID (ABA, CHIPS, SORT, etc.)
+        countryCode:
+          type: string
+          description: Country code
+    NationalIdDetails:
+      type: object
+      properties:
+        nationalId:
+          type: string
+        type:
+          type: string
+        bankName:
+          type: string
+        countryCode:
+          type: string
+        city:
+          type: string
+    CountryCodeDetails:
+      type: object
+      properties:
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        countryName:
+          type: string
+          description: Country name
+        ibanLength:
+          type: integer
+          description: IBAN length for this country
+        ibanStructure:
+          type: string
+          description: IBAN structure definition
+    CurrencyCodeDetails:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          description: ISO 4217 currency code
+        currencyName:
+          type: string
+          description: Currency name
+        minorUnits:
+          type: integer
+          description: Number of decimal places (minor currency units)
+    ReachabilityResult:
+      type: object
+      properties:
+        sepaCtReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Credit Transfer
+        sepaDirectDebitReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Direct Debit
+        sepaInstantReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Instant payments
+  responses:
+    BadRequest:
+      description: Bad request - invalid identifier format
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    Unauthorized:
+      description: Unauthorized - invalid or expired OAuth token
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    NotFound:
+      description: Identifier not found in reference data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string

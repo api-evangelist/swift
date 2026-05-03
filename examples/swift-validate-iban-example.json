@@ -1,0 +1,19 @@
+{
+  "summary": "Validate an IBAN",
+  "description": "Example of validating a German IBAN using the SWIFT SwiftRef API",
+  "request": {
+    "method": "GET",
+    "url": "https://api.swift.com/swiftrefdata/v2/ibans/DE89370400440532013000/validity",
+    "headers": {
+      "Authorization": "Bearer your-oauth-access-token"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "valid": true,
+      "errorCode": null,
+      "errorDescription": null
+    }
+  }
+}

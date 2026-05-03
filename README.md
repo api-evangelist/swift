@@ -1,42 +1,56 @@
-# SWIFT (swift)
-Sure! The Society for Worldwide Interbank Financial Telecommunication (SWIFT) is a global messaging network used by banks and financial institutions to securely and efficiently send and receive information about financial transactions. SWIFT operates by providing a unique code, known as a SWIFT code, to each of its members, enabling them to communicate and process transfers of money across borders. This network plays a crucial role in facilitating international payments and settlements, ensuring that transactions are executed quickly, accurately, and securely. Additionally, SWIFT also offers a range of services beyond messaging, such as compliance and security solutions, to help its members operate more effectively in the global financial system.
+# SWIFT
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/apis.yml)
+SWIFT (Society for Worldwide Interbank Financial Telecommunication) is a global member-owned cooperative providing secure financial messaging services and reference data to financial institutions worldwide. SWIFT offers REST APIs for cross-border payment tracking (GPI), payment pre-validation, reference data lookup (SwiftRef), transaction screening, and instant payments. All APIs are documented using OpenAPI 3.0 and use OAuth 2.0 JWT-Bearer authentication.
 
-## Scope
-
-- **Type:** Index 
-- **Position:** Consumer 
-- **Access:** 3rd-Party 
-
-## Tags:
-
- - Financial, Transactions
-
-## Timestamps
-
-- **Created:** 2025-02-06 
-- **Modified:** 2025-03-02 
+- **Website:** https://www.swift.com
+- **Developer Portal:** https://developer.swift.com
+- **API Catalogue:** https://developer.swift.com/apis
+- **Sandbox:** https://sandbox.swift.com
 
 ## APIs
 
-### SWIFT
-SWIFT, which stands for the Society for Worldwide Interbank Financial Telecommunication, is a global messaging network that enables financial institutions to securely and efficiently send and receive information about financial transactions. SWIFT provides a standardized messaging system that allows banks and other financial institutions to communicate with each other in a standardized and structured way, facilitating international transactions, money transfers, and other financial operations. SWIFT plays a crucial role in the global economy by ensuring that financial messages are delivered securely and accurately, helping to facilitate international trade and commerce.
+### SwiftRef API
+Real-time lookup and validation of payments reference data including BICs, IBANs, LEIs, National IDs, country codes, and currency codes. Enables financial institutions and fintechs to achieve higher straight-through processing rates.
 
-**Human URL:** [ https://community.developer-test.swift.com/]( https://community.developer-test.swift.com/)
+- **Documentation:** https://developer.swift.com/apis/swiftref-api
+- **Base URL:** https://api.swift.com/swiftrefdata
+- **OpenAPI:** [openapi/swift-swiftref-api-openapi.yml](openapi/swift-swiftref-api-openapi.yml)
 
+### SWIFT GPI API
+Real-time cross-border payment tracking using UETR (Unique End-to-End Transaction Reference). Enables financial institutions to track, update statuses, and manage stop/recall requests for GPI payments.
 
-#### Tags:
+- **Documentation:** https://developer.swift.com/apis/gpi-apis
 
- - Financial, Transactions
+### Payment Pre-validation API
+Validates payment instructions before execution to reduce failures. Checks account numbers, BIC reachability, and beneficiary details.
 
-#### Properties
+- **Documentation:** https://developer.swift.com/apis/payment-pre-validation-api
 
-- [Documentation]( https://community.developer-test.swift.com/)
+## Artifacts
+
+| Type | Path |
+|---|---|
+| OpenAPI Specs | [openapi/](openapi/) |
+| Spectral Rules | [rules/swift-rules.yml](rules/swift-rules.yml) |
+| Naftiko Capabilities | [capabilities/](capabilities/) |
+| JSON Schema | [json-schema/](json-schema/) |
+| JSON Structure | [json-structure/](json-structure/) |
+| JSON-LD Context | [json-ld/swift-context.jsonld](json-ld/swift-context.jsonld) |
+| Examples | [examples/](examples/) |
+| Vocabulary | [vocabulary/swift-vocabulary.yml](vocabulary/swift-vocabulary.yml) |
+
+## Naftiko Capabilities
+
+### Shared Definitions
+- [capabilities/shared/swift-swiftref.yaml](capabilities/shared/swift-swiftref.yaml) — SwiftRef reference data lookup consumer
+
+### Workflow Capabilities
+- [capabilities/payment-validation.yaml](capabilities/payment-validation.yaml) — Payment identifier validation workflow (SwiftRef, REST port 8080, MCP port 9090, 9 tools)
+
+## Authentication
+
+All SWIFT APIs use OAuth 2.0 with JWT-Bearer grant type (RFC 7523). Access requires SWIFT member credentials obtained from the SWIFT Developer Portal.
 
 ## Maintainers
 
-**FN:** Kin Lane
-
-**Email:** info@apievangelist.com
-
+- Kin Lane (kin@apievangelist.com)

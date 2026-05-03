@@ -1,0 +1,333 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "SWIFT SwiftRef API"
+  description: >-
+    Real-time lookup and validation of payments reference data including BICs,
+    IBANs, LEIs, National IDs, country codes, and currency codes. Used to
+    validate financial identifiers before payment execution.
+  tags:
+    - BIC Validation
+    - Financial Reference Data
+    - IBAN Validation
+    - LEI Validation
+    - Payments
+    - Reference Data
+    - SWIFT
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      SWIFT_CLIENT_ID: SWIFT_CLIENT_ID
+      SWIFT_CLIENT_SECRET: SWIFT_CLIENT_SECRET
+
+capability:
+  consumes:
+    - type: http
+      namespace: swiftref
+      baseUri: https://api.swift.com/swiftrefdata
+      description: "SWIFT SwiftRef reference data lookup and validation"
+      authentication:
+        type: bearer
+        token: "{{SWIFTREF_ACCESS_TOKEN}}"
+      resources:
+        - name: bics
+          path: /v2/bics/{bic}
+          description: BIC lookup and validation
+          operations:
+            - name: get-bic
+              method: GET
+              description: "Get BIC Details"
+              inputParameters:
+                - name: bic
+                  in: path
+                  type: string
+                  required: true
+                  description: "8 or 11 character BIC"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: validate-bic
+              method: GET
+              description: "Validate BIC"
+              inputParameters:
+                - name: bic
+                  in: path
+                  type: string
+                  required: true
+                  description: "BIC to validate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: ibans
+          path: /v2/ibans/{iban}
+          description: IBAN lookup and validation
+          operations:
+            - name: get-iban
+              method: GET
+              description: "Get IBAN Details"
+              inputParameters:
+                - name: iban
+                  in: path
+                  type: string
+                  required: true
+                  description: "IBAN without spaces"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: validate-iban
+              method: GET
+              description: "Validate IBAN"
+              inputParameters:
+                - name: iban
+                  in: path
+                  type: string
+                  required: true
+                  description: "IBAN to validate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-bic-for-iban
+              method: GET
+              description: "Get BIC for IBAN"
+              inputParameters:
+                - name: iban
+                  in: path
+                  type: string
+                  required: true
+                  description: "IBAN to resolve BIC for"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: leis
+          path: /v2/leis/{lei}
+          description: LEI lookup and validation
+          operations:
+            - name: get-lei
+              method: GET
+              description: "Get LEI Details"
+              inputParameters:
+                - name: lei
+                  in: path
+                  type: string
+                  required: true
+                  description: "20-character LEI"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: validate-lei
+              method: GET
+              description: "Validate LEI"
+              inputParameters:
+                - name: lei
+                  in: path
+                  type: string
+                  required: true
+                  description: "LEI to validate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: national-ids
+          path: /v2/national_ids/{national_id}
+          description: National ID lookup
+          operations:
+            - name: get-national-id
+              method: GET
+              description: "Get National ID Details"
+              inputParameters:
+                - name: national_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "National clearing code or routing number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: validate-national-id
+              method: GET
+              description: "Validate National ID"
+              inputParameters:
+                - name: national_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "National ID to validate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: swiftref-rest
+      resources:
+        - path: /v1/bics/{bic}
+          name: bics
+          description: "BIC lookup and validation"
+          operations:
+            - method: GET
+              name: get-bic
+              description: "Get BIC Details"
+              call: "swiftref.get-bic"
+              with:
+                bic: "rest.bic"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/ibans/{iban}
+          name: ibans
+          description: "IBAN lookup and validation"
+          operations:
+            - method: GET
+              name: get-iban
+              description: "Get IBAN Details"
+              call: "swiftref.get-iban"
+              with:
+                iban: "rest.iban"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/leis/{lei}
+          name: leis
+          description: "LEI lookup and validation"
+          operations:
+            - method: GET
+              name: get-lei
+              description: "Get LEI Details"
+              call: "swiftref.get-lei"
+              with:
+                lei: "rest.lei"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: swiftref-mcp
+      transport: http
+      tools:
+        - name: get-bic
+          description: "Get details for a BIC (Bank Identifier Code)"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "swiftref.get-bic"
+          with:
+            bic: "tools.bic"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: validate-bic
+          description: "Validate whether a BIC is registered and active in the SWIFT network"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "swiftref.validate-bic"
+          with:
+            bic: "tools.bic"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-iban
+          description: "Get details for an IBAN including associated BIC and bank information"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "swiftref.get-iban"
+          with:
+            iban: "tools.iban"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: validate-iban
+          description: "Validate an IBAN format and check digits"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "swiftref.validate-iban"
+          with:
+            iban: "tools.iban"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-bic-for-iban
+          description: "Resolve the BIC for a given IBAN"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "swiftref.get-bic-for-iban"
+          with:
+            iban: "tools.iban"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-lei
+          description: "Get Legal Entity Identifier details including entity name and registration status"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "swiftref.get-lei"
+          with:
+            lei: "tools.lei"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: validate-lei
+          description: "Validate a Legal Entity Identifier against GLEIF"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "swiftref.validate-lei"
+          with:
+            lei: "tools.lei"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-national-id
+          description: "Get details for a national clearing code or routing number"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "swiftref.get-national-id"
+          with:
+            national_id: "tools.national_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
