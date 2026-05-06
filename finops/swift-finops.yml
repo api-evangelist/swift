@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,161 +9,76 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: SWIFT
 providerId: swift
-publisherName: SWIFT
-serviceCategory: API
+publisherName: S.W.I.F.T. SC
+serviceCategory: Financial Messaging & Cross-Border Payments
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Banking
-  - Cross-Border Payments
-  - Financial Messaging
-  - Financial Services
-  - GPI
-  - ISO 20022
-  - Payments
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the SWIFT API surface. Provides a FOCUS-aligned mapping for
-  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+  - Banking
+  - Financial Messaging
+  - Payments
+  - ISO 20022
+description: SWIFT bills members under the cooperative's published-but-member-only pricing schedule
+  (annual support charges, traffic charges by message class, service-specific fees). This artifact captures
+  publisher and category surface only; meters are placeholders pending member-only pricing access.
+sources:
+  - https://www.swift.com
+notes: 'Reconciliation marked false: SWIFT pricing is private to members. No public per-call rate card.'
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
-  billingCurrency: USD
+  pricingCategory: Member-Tiered Cooperative Pricing
+  billingFrequency: Annual + Per-Message Settlement
+  billingCurrency: EUR
   chargeCategories:
     - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: SWIFT
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Financial Messaging
   ProviderName: SWIFT
-  PublisherName: SWIFT
-  InvoiceIssuerName: SWIFT
-  PricingCategory: Usage-Based
-  PricingUnit: request
-  BillingCurrency: USD
-  ChargeCategory: Usage
+  PublisherName: S.W.I.F.T. SC
+  InvoiceIssuerName: S.W.I.F.T. SC
+  BillingCurrency: EUR
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: messaging_traffic
+    description: SWIFT message traffic billed by tier and message type (FIN, MX, ISO 20022); rates per
+      member's traffic band
+    unit: message
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - message_type
+      - service
+      - member_tier
+  - name: annual_membership
+    description: Annual support and membership fee scaled by member share class
+    unit: year
+    aggregation: max
+    dimensions:
+      - member_class
+  - name: service_charges
+    description: Service-specific fees (gpi, KYC Registry, Sanctions Screening, Transaction Screening,
+      Compliance Analytics)
+    unit: varies
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: SwiftRef API
-    baseURL: https://api.swift.com/swiftrefdata
-    tags:
-      - BIC Validation
-      - Financial Reference Data
-      - IBAN Validation
-      - LEI Validation
-      - Reference Data
-      - SwiftRef
-    serviceName: SwiftRef API
-    serviceCategory: API
-  - name: SWIFT GPI API
-    baseURL: https://api.swift.com/swift-apigateway
-    tags:
-      - Cross-Border Payments
-      - GPI
-      - ISO 20022
-      - Payment Tracking
-      - Payments
-      - UETR
-    serviceName: SWIFT GPI API
-    serviceCategory: API
-  - name: Payment Pre-validation API
-    baseURL: ''
-    tags:
-      - Compliance
-      - Payment Pre-validation
-      - Payments
-      - Risk Management
-      - Straight-Through Processing
-    serviceName: Payment Pre-validation API
-    serviceCategory: API
-  - name: Transaction Screening API
-    baseURL: ''
-    tags:
-      - AML
-      - Compliance
-      - Payments
-      - Sanctions Screening
-      - Transaction Screening
-    serviceName: Transaction Screening API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - service
+principles:
+  - name: Visibility
+    description: Visibility into SWIFT spend is via the member's SWIFTNet billing files and the swift.com
+      member portal, not a public usage API.
+  - name: Allocation
+    description: Allocate by message type and originating business line; SWIFT bill files itemize traffic
+      by service and BIC.
+  - name: Optimization
+    description: Optimization levers include traffic-band selection at year-end, consolidating BICs,
+      using Alliance Cloud or Lite2 to reduce on-prem operating cost, and leaning on shared services.
+  - name: Accountability
+    description: Account ownership rests with the institution's payments operations and SWIFT relationship
+      manager; review against the annual SWIFT pricing notification.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
