@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SWIFT SwiftRef API — Country Codes
+  description: 'SWIFT SwiftRef API — Country Codes. 2 operations. Lead operation: Get Country Code Details. Self-contained
+    Naftiko capability covering one Swift business surface.'
+  tags:
+  - Swift
+  - Country Codes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SWIFT_API_KEY: SWIFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: swiftref-country-codes
+    baseUri: https://api.swift.com/swiftrefdata
+    description: SWIFT SwiftRef API — Country Codes business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-country_codes-country_code
+      path: /v2/country_codes/{country_code}
+      operations:
+      - name: getcountrycode
+        method: GET
+        description: Get Country Code Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-country_codes-country_code-validity
+      path: /v2/country_codes/{country_code}/validity
+      operations:
+      - name: validatecountrycode
+        method: GET
+        description: Validate Country Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SWIFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: swiftref-country-codes-rest
+    port: 8080
+    description: REST adapter for SWIFT SwiftRef API — Country Codes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/country-codes/{country-code}
+      name: v2-country-codes-country-code
+      description: REST surface for v2-country_codes-country_code.
+      operations:
+      - method: GET
+        name: getcountrycode
+        description: Get Country Code Details
+        call: swiftref-country-codes.getcountrycode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/country-codes/{country-code}/validity
+      name: v2-country-codes-country-code-validity
+      description: REST surface for v2-country_codes-country_code-validity.
+      operations:
+      - method: GET
+        name: validatecountrycode
+        description: Validate Country Code
+        call: swiftref-country-codes.validatecountrycode
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: swiftref-country-codes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SWIFT SwiftRef API — Country Codes. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-country-code-details
+      description: Get Country Code Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-country-codes.getcountrycode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validate-country-code
+      description: Validate Country Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-country-codes.validatecountrycode
+      outputParameters:
+      - type: object
+        mapping: $.

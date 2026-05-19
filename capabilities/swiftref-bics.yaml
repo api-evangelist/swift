@@ -1,0 +1,230 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SWIFT SwiftRef API — BICs
+  description: 'SWIFT SwiftRef API — BICs. 6 operations. Lead operation: Get BIC Details. Self-contained Naftiko capability
+    covering one Swift business surface.'
+  tags:
+  - Swift
+  - BICs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SWIFT_API_KEY: SWIFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: swiftref-bics
+    baseUri: https://api.swift.com/swiftrefdata
+    description: SWIFT SwiftRef API — BICs business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-bics-bic
+      path: /v2/bics/{bic}
+      operations:
+      - name: getbic
+        method: GET
+        description: Get BIC Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-bics-bic-lei
+      path: /v2/bics/{bic}/lei
+      operations:
+      - name: getbiclei
+        method: GET
+        description: Get LEI for BIC
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-bics-bic-national_ids
+      path: /v2/bics/{bic}/national_ids
+      operations:
+      - name: getbicnationalids
+        method: GET
+        description: Get National IDs for BIC
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-bics-bic-reachability
+      path: /v2/bics/{bic}/reachability
+      operations:
+      - name: getbicsepareachability
+        method: GET
+        description: Validate SEPA Reachability
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-bics-bic-ssis
+      path: /v2/bics/{bic}/ssis
+      operations:
+      - name: getbicssis
+        method: GET
+        description: Get SSIs for BIC
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-bics-bic-validity
+      path: /v2/bics/{bic}/validity
+      operations:
+      - name: validatebic
+        method: GET
+        description: Validate BIC
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SWIFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: swiftref-bics-rest
+    port: 8080
+    description: REST adapter for SWIFT SwiftRef API — BICs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/bics/{bic}
+      name: v2-bics-bic
+      description: REST surface for v2-bics-bic.
+      operations:
+      - method: GET
+        name: getbic
+        description: Get BIC Details
+        call: swiftref-bics.getbic
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/bics/{bic}/lei
+      name: v2-bics-bic-lei
+      description: REST surface for v2-bics-bic-lei.
+      operations:
+      - method: GET
+        name: getbiclei
+        description: Get LEI for BIC
+        call: swiftref-bics.getbiclei
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/bics/{bic}/national-ids
+      name: v2-bics-bic-national-ids
+      description: REST surface for v2-bics-bic-national_ids.
+      operations:
+      - method: GET
+        name: getbicnationalids
+        description: Get National IDs for BIC
+        call: swiftref-bics.getbicnationalids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/bics/{bic}/reachability
+      name: v2-bics-bic-reachability
+      description: REST surface for v2-bics-bic-reachability.
+      operations:
+      - method: GET
+        name: getbicsepareachability
+        description: Validate SEPA Reachability
+        call: swiftref-bics.getbicsepareachability
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/bics/{bic}/ssis
+      name: v2-bics-bic-ssis
+      description: REST surface for v2-bics-bic-ssis.
+      operations:
+      - method: GET
+        name: getbicssis
+        description: Get SSIs for BIC
+        call: swiftref-bics.getbicssis
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/bics/{bic}/validity
+      name: v2-bics-bic-validity
+      description: REST surface for v2-bics-bic-validity.
+      operations:
+      - method: GET
+        name: validatebic
+        description: Validate BIC
+        call: swiftref-bics.validatebic
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: swiftref-bics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SWIFT SwiftRef API — BICs. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-bic-details
+      description: Get BIC Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-bics.getbic
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-lei-bic
+      description: Get LEI for BIC
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-bics.getbiclei
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-national-ids-bic
+      description: Get National IDs for BIC
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-bics.getbicnationalids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validate-sepa-reachability
+      description: Validate SEPA Reachability
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-bics.getbicsepareachability
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ssis-bic
+      description: Get SSIs for BIC
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-bics.getbicssis
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validate-bic
+      description: Validate BIC
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-bics.validatebic
+      outputParameters:
+      - type: object
+        mapping: $.

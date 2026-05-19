@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SWIFT SwiftRef API — Account Numbers
+  description: 'SWIFT SwiftRef API — Account Numbers. 1 operations. Lead operation: Validate Account Number. Self-contained
+    Naftiko capability covering one Swift business surface.'
+  tags:
+  - Swift
+  - Account Numbers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SWIFT_API_KEY: SWIFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: swiftref-account-numbers
+    baseUri: https://api.swift.com/swiftrefdata
+    description: SWIFT SwiftRef API — Account Numbers business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-account_numbers-account_number-validity
+      path: /v2/account_numbers/{account_number}/validity
+      operations:
+      - name: validateaccountnumber
+        method: GET
+        description: Validate Account Number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: account_number
+          in: path
+          type: string
+          description: Account number to validate
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SWIFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: swiftref-account-numbers-rest
+    port: 8080
+    description: REST adapter for SWIFT SwiftRef API — Account Numbers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/account-numbers/{account-number}/validity
+      name: v2-account-numbers-account-number-validity
+      description: REST surface for v2-account_numbers-account_number-validity.
+      operations:
+      - method: GET
+        name: validateaccountnumber
+        description: Validate Account Number
+        call: swiftref-account-numbers.validateaccountnumber
+        with:
+          account_number: rest.account_number
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: swiftref-account-numbers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SWIFT SwiftRef API — Account Numbers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: validate-account-number
+      description: Validate Account Number
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-account-numbers.validateaccountnumber
+      with:
+        account_number: tools.account_number
+      outputParameters:
+      - type: object
+        mapping: $.

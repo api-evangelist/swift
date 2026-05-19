@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SWIFT SwiftRef API — Currency Codes
+  description: 'SWIFT SwiftRef API — Currency Codes. 2 operations. Lead operation: Get Currency Code Details. Self-contained
+    Naftiko capability covering one Swift business surface.'
+  tags:
+  - Swift
+  - Currency Codes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SWIFT_API_KEY: SWIFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: swiftref-currency-codes
+    baseUri: https://api.swift.com/swiftrefdata
+    description: SWIFT SwiftRef API — Currency Codes business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-currency_codes-currency_code
+      path: /v2/currency_codes/{currency_code}
+      operations:
+      - name: getcurrencycode
+        method: GET
+        description: Get Currency Code Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-currency_codes-currency_code-validity
+      path: /v2/currency_codes/{currency_code}/validity
+      operations:
+      - name: validatecurrencycode
+        method: GET
+        description: Validate Currency Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SWIFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: swiftref-currency-codes-rest
+    port: 8080
+    description: REST adapter for SWIFT SwiftRef API — Currency Codes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/currency-codes/{currency-code}
+      name: v2-currency-codes-currency-code
+      description: REST surface for v2-currency_codes-currency_code.
+      operations:
+      - method: GET
+        name: getcurrencycode
+        description: Get Currency Code Details
+        call: swiftref-currency-codes.getcurrencycode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/currency-codes/{currency-code}/validity
+      name: v2-currency-codes-currency-code-validity
+      description: REST surface for v2-currency_codes-currency_code-validity.
+      operations:
+      - method: GET
+        name: validatecurrencycode
+        description: Validate Currency Code
+        call: swiftref-currency-codes.validatecurrencycode
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: swiftref-currency-codes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SWIFT SwiftRef API — Currency Codes. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-currency-code-details
+      description: Get Currency Code Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-currency-codes.getcurrencycode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: validate-currency-code
+      description: Validate Currency Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swiftref-currency-codes.validatecurrencycode
+      outputParameters:
+      - type: object
+        mapping: $.
