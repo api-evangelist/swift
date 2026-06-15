@@ -1,0 +1,3331 @@
+{
+  "item": [
+    {
+      "id": "a249f29c-5b6f-489f-923b-d72d9dc06363",
+      "name": "BICs",
+      "description": {
+        "content": "BIC (Bank Identifier Code) lookup and validation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0add7b80-8574-4ad0-9449-a31fcf4f92a7",
+          "name": "Get BIC Details",
+          "request": {
+            "name": "Get BIC Details",
+            "description": {
+              "content": "Returns detailed information about a BIC (Bank Identifier Code) including institution name, address, and connectivity status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bics",
+                ":bic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bic",
+                  "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "013a4eb8-3c4b-4376-a448-eb912311bd06",
+              "name": "BIC details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bic\": \"string\",\n  \"institutionName\": \"string\",\n  \"countryCode\": \"string\",\n  \"city\": \"string\",\n  \"address\": \"string\",\n  \"status\": \"string\",\n  \"connectedToBIC\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a2e8155-14b7-4c9e-9535-141461b63af5",
+              "name": "Bad request - invalid identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c723f7bc-cd96-4e86-8c96-01d0121fe15a",
+              "name": "Unauthorized - invalid or expired OAuth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdf0048d-0a2f-4b30-8ce2-9c763339d2e8",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82c9c8ee-7a1d-4242-9fb8-8b3478b45d70",
+          "name": "Validate BIC",
+          "request": {
+            "name": "Validate BIC",
+            "description": {
+              "content": "Checks the validity of a BIC code, confirming it is a registered and active BIC in the SWIFT network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bics",
+                ":bic",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bic",
+                  "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f39d36d1-b4ad-416e-8c15-1fe93c1d5bff",
+              "name": "BIC validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e9b7acf-0f9d-4278-a4a8-43089ae2c303",
+              "name": "Bad request - invalid identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "793ecdd0-ee4e-4d92-9775-e02df198feff",
+              "name": "Unauthorized - invalid or expired OAuth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d6f7d69-0b6c-4427-9fc5-4053285a5d05",
+          "name": "Get LEI for BIC",
+          "request": {
+            "name": "Get LEI for BIC",
+            "description": {
+              "content": "Returns the Legal Entity Identifier (LEI) associated with a BIC.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bics",
+                ":bic",
+                "lei"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bic",
+                  "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2465a5f8-80d7-41b4-96e0-4f41c701a13e",
+              "name": "LEI for the BIC",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "lei"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lei\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8724500e-c612-4e58-8795-caedf118cca2",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "lei"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5920f61-6fe2-4983-9dd0-1dc8ed815d07",
+          "name": "Get National IDs for BIC",
+          "request": {
+            "name": "Get National IDs for BIC",
+            "description": {
+              "content": "Returns all National IDs associated with a BIC.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bics",
+                ":bic",
+                "national_ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bic",
+                  "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bedb63a4-d11e-4ca6-be0c-bf05225290d1",
+              "name": "National IDs for the BIC",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "national_ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"nationalId\": \"string\",\n    \"type\": \"string\",\n    \"countryCode\": \"string\"\n  },\n  {\n    \"nationalId\": \"string\",\n    \"type\": \"string\",\n    \"countryCode\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "463f44c2-f764-46c9-bd15-248eec71d648",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "national_ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "812554c1-94af-4769-b4b8-a791dc13d24f",
+          "name": "Validate SEPA Reachability",
+          "request": {
+            "name": "Validate SEPA Reachability",
+            "description": {
+              "content": "Validates whether a BIC is reachable via SEPA (Single Euro Payments Area) credit transfer or direct debit schemes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bics",
+                ":bic",
+                "reachability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bic",
+                  "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ba531af-58c0-41ab-a90e-4d087638c809",
+              "name": "SEPA reachability status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "reachability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sepaCtReachable\": false,\n  \"sepaDirectDebitReachable\": false,\n  \"sepaInstantReachable\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6a3c6d9-7722-4dc6-b7e1-82b8fb950bd0",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "reachability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1bed31e-66fd-425e-a30a-41d593d07e02",
+          "name": "Get SSIs for BIC",
+          "request": {
+            "name": "Get SSIs for BIC",
+            "description": {
+              "content": "Returns Standard Settlement Instructions (SSIs) associated with a BIC.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bics",
+                ":bic",
+                "ssis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bic",
+                  "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fda11f77-8b70-422a-8fdd-30a7b990fa6d",
+              "name": "SSIs for the BIC",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "ssis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b99b4aea-d2fa-4115-9927-7f60d56cc851",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bics",
+                    ":bic",
+                    "ssis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bic",
+                      "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a6a34b80-c562-4af0-ad36-fed948711d84",
+      "name": "IBANs",
+      "description": {
+        "content": "IBAN (International Bank Account Number) lookup and validation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b779dca-51c0-405d-9470-a4667868901b",
+          "name": "Get IBAN Details",
+          "request": {
+            "name": "Get IBAN Details",
+            "description": {
+              "content": "Returns details for an IBAN including the associated BIC, bank name, and account holder country.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ibans",
+                ":iban"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51dae9fd-188c-407a-90fa-aa956248358b",
+              "name": "IBAN details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"iban\": \"string\",\n  \"bic\": \"string\",\n  \"countryCode\": \"string\",\n  \"bankCode\": \"string\",\n  \"accountNumber\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "151895b6-97be-4ada-abe5-56413d4f12ef",
+              "name": "Bad request - invalid identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "099d82c7-9814-43b7-b8fe-c05597ce085a",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "015b0224-228c-4b90-a6dd-f8bae3caccb4",
+          "name": "Validate IBAN",
+          "request": {
+            "name": "Validate IBAN",
+            "description": {
+              "content": "Validates an IBAN by checking its format, check digits, country code, and BBAN structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ibans",
+                ":iban",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc49b1eb-d085-4f52-b45e-13989fecc572",
+              "name": "IBAN validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ee69dbb-ef45-4d5f-aea2-4320936c1eaf",
+              "name": "Bad request - invalid identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a3c063d-b724-4838-8c2a-c7173f56c790",
+          "name": "Get BIC for IBAN",
+          "request": {
+            "name": "Get BIC for IBAN",
+            "description": {
+              "content": "Returns the BIC associated with a given IBAN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ibans",
+                ":iban",
+                "bic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4846453-d4a1-4a29-99a1-ae9eab1f2430",
+              "name": "BIC for the IBAN",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban",
+                    "bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bic\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32114817-6099-4d79-b793-d7d5bc45af0b",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban",
+                    "bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87c43f96-7434-48a7-a890-e427a535b926",
+          "name": "Get BIC for IBAN National ID",
+          "request": {
+            "name": "Get BIC for IBAN National ID",
+            "description": {
+              "content": "Returns the BIC associated with an IBAN national ID component.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "iban_national_ids",
+                ":iban_national_id",
+                "bic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban_national_id",
+                  "description": "(Required) IBAN national ID component"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b570084-7a8b-4975-88d1-8f331ca09b9f",
+              "name": "BIC for the IBAN national ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "iban_national_ids",
+                    ":iban_national_id",
+                    "bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban_national_id",
+                      "description": "(Required) IBAN national ID component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bic\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "18410611-c4ad-4761-b468-332733ec4d46",
+      "name": "LEIs",
+      "description": {
+        "content": "LEI (Legal Entity Identifier) lookup and validation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba70bb58-68d1-4d0a-95a1-2ad616f6a53d",
+          "name": "Get LEI Details",
+          "request": {
+            "name": "Get LEI Details",
+            "description": {
+              "content": "Returns details for a Legal Entity Identifier (LEI) including entity name, legal address, and registration status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "leis",
+                ":lei"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) 20-character Legal Entity Identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e950350c-5066-41ac-87dd-fc4e53c47787",
+              "name": "LEI details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "leis",
+                    ":lei"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) 20-character Legal Entity Identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lei\": \"string\",\n  \"legalName\": \"string\",\n  \"legalAddress\": {},\n  \"registrationStatus\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8755bb2-b327-42ef-9701-f72f919d9b3e",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "leis",
+                    ":lei"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) 20-character Legal Entity Identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "295dcacf-fabf-4e98-8ac5-03b74cae8305",
+          "name": "Validate LEI",
+          "request": {
+            "name": "Validate LEI",
+            "description": {
+              "content": "Checks whether a Legal Entity Identifier is valid and active in the Global LEI System (GLEIF).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "leis",
+                ":lei",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) 20-character Legal Entity Identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c14388b3-03ab-46e6-abd9-5a1e1268e66c",
+              "name": "LEI validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "leis",
+                    ":lei",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) 20-character Legal Entity Identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a44e949-c4e0-4e7c-a70d-78416825c338",
+          "name": "Get BIC for LEI",
+          "request": {
+            "name": "Get BIC for LEI",
+            "description": {
+              "content": "Returns the BIC associated with a Legal Entity Identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "leis",
+                ":lei",
+                "bic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lei",
+                  "description": "(Required) 20-character Legal Entity Identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d5d23cc-350f-4d9f-871d-58ea914001a0",
+              "name": "BIC for the LEI",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "leis",
+                    ":lei",
+                    "bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lei",
+                      "description": "(Required) 20-character Legal Entity Identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bic\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "12455df2-47af-4b59-a6a8-77e51daa91c6",
+      "name": "National IDs",
+      "description": {
+        "content": "National ID lookup and BIC resolution",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f1bbf40-cd64-47bf-ae27-4f05e3aadfec",
+          "name": "Get National ID Details",
+          "request": {
+            "name": "Get National ID Details",
+            "description": {
+              "content": "Returns details for a National ID (clearing code, routing number) used for domestic payment routing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "national_ids",
+                ":national_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "national_id",
+                  "description": "(Required) National ID clearing code or routing number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e5c57b3-6941-4100-bd0b-b0fab10d469e",
+              "name": "National ID details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "national_ids",
+                    ":national_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "national_id",
+                      "description": "(Required) National ID clearing code or routing number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nationalId\": \"string\",\n  \"type\": \"string\",\n  \"bankName\": \"string\",\n  \"countryCode\": \"string\",\n  \"city\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4a36a26-281b-4e70-a1c2-d827936ae4eb",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "national_ids",
+                    ":national_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "national_id",
+                      "description": "(Required) National ID clearing code or routing number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47ca5ec8-7549-44df-b9bf-06d912c832bd",
+          "name": "Validate National ID",
+          "request": {
+            "name": "Validate National ID",
+            "description": {
+              "content": "Checks the validity of a National ID (clearing code or routing number).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "national_ids",
+                ":national_id",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "national_id",
+                  "description": "(Required) National ID clearing code or routing number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c06587e2-7cae-49b6-b65a-033818950c9b",
+              "name": "National ID validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "national_ids",
+                    ":national_id",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "national_id",
+                      "description": "(Required) National ID clearing code or routing number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fdedf4d-3d99-4896-97df-8cc96a0862b7",
+          "name": "Get BICs for National ID",
+          "request": {
+            "name": "Get BICs for National ID",
+            "description": {
+              "content": "Returns the BIC(s) associated with a National ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "national_ids",
+                ":national_id",
+                "bics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "national_id",
+                  "description": "(Required) National ID clearing code or routing number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63afb11f-37d8-46d9-b9da-0ecceea25362",
+              "name": "BICs for the National ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "national_ids",
+                    ":national_id",
+                    "bics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "national_id",
+                      "description": "(Required) National ID clearing code or routing number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"bic\": \"string\",\n    \"institutionName\": \"string\",\n    \"countryCode\": \"string\",\n    \"city\": \"string\",\n    \"address\": \"string\",\n    \"status\": \"string\",\n    \"connectedToBIC\": true\n  },\n  {\n    \"bic\": \"string\",\n    \"institutionName\": \"string\",\n    \"countryCode\": \"string\",\n    \"city\": \"string\",\n    \"address\": \"string\",\n    \"status\": \"string\",\n    \"connectedToBIC\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "047c7c7d-a051-49dd-bbd7-3ffa3affc305",
+      "name": "Country Codes",
+      "description": {
+        "content": "Country code lookup and validation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7da1d2a-c80b-464c-9548-3a92a79deb5f",
+          "name": "Get Country Code Details",
+          "request": {
+            "name": "Get Country Code Details",
+            "description": {
+              "content": "Returns details for an ISO 3166-1 alpha-2 country code including country name and IBAN structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "country_codes",
+                ":country_code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "country_code",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f8b2b58-1a7c-412b-ac23-fdadca238a3e",
+              "name": "Country code details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "country_codes",
+                    ":country_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country_code",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"countryCode\": \"string\",\n  \"countryName\": \"string\",\n  \"ibanLength\": 4485,\n  \"ibanStructure\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00baf965-c75f-42d0-a118-abe78114ef55",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "country_codes",
+                    ":country_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country_code",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27477fa3-d948-4f7b-af2a-9b3868527076",
+          "name": "Validate Country Code",
+          "request": {
+            "name": "Validate Country Code",
+            "description": {
+              "content": "Checks whether a country code is a valid ISO 3166-1 alpha-2 code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "country_codes",
+                ":country_code",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "country_code",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc9465c6-d6fa-45d9-9de2-82d23c787392",
+              "name": "Country code validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "country_codes",
+                    ":country_code",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country_code",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "caa73e91-baf5-4980-ac8a-5bfd5a10bb29",
+      "name": "Currency Codes",
+      "description": {
+        "content": "Currency code lookup and validation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ea6a9ca2-4e15-4db8-9210-490d4cbdca63",
+          "name": "Get Currency Code Details",
+          "request": {
+            "name": "Get Currency Code Details",
+            "description": {
+              "content": "Returns details for an ISO 4217 currency code including currency name and minor units.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "currency_codes",
+                ":currency_code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "currency_code",
+                  "description": "(Required) ISO 4217 currency code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "010f869b-a7cc-44a4-a3d4-cf9d7da65752",
+              "name": "Currency code details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "currency_codes",
+                    ":currency_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency_code",
+                      "description": "(Required) ISO 4217 currency code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currencyCode\": \"string\",\n  \"currencyName\": \"string\",\n  \"minorUnits\": 6503\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4910e287-075b-4019-a3e2-45a95f5f4ed1",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "currency_codes",
+                    ":currency_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency_code",
+                      "description": "(Required) ISO 4217 currency code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cf8ebe8-8d90-4e08-8321-fe50e8aa20a5",
+          "name": "Validate Currency Code",
+          "request": {
+            "name": "Validate Currency Code",
+            "description": {
+              "content": "Checks whether a currency code is a valid ISO 4217 code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "currency_codes",
+                ":currency_code",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "currency_code",
+                  "description": "(Required) ISO 4217 currency code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb8119c2-5dca-4f01-ba63-ae56d1ac3bf6",
+              "name": "Currency code validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "currency_codes",
+                    ":currency_code",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency_code",
+                      "description": "(Required) ISO 4217 currency code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b75845f5-f79c-4e24-9dde-f29fa6b0c6cd",
+      "name": "Account Numbers",
+      "description": {
+        "content": "Account number format validation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd1e0130-a6fd-4f97-9563-040c919819fe",
+          "name": "Validate Account Number",
+          "request": {
+            "name": "Validate Account Number",
+            "description": {
+              "content": "Checks the validity of various account number formats including IBANs, checking account number format compliance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "account_numbers",
+                ":account_number",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_number",
+                  "description": "(Required) Account number to validate"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad399950-aafc-4877-bdb4-df3dee4dc959",
+              "name": "Account number validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "account_numbers",
+                    ":account_number",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_number",
+                      "description": "(Required) Account number to validate"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc3a4ba2-06e3-4389-b6f1-a2b3900b2875",
+              "name": "Bad request - invalid identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "account_numbers",
+                    ":account_number",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_number",
+                      "description": "(Required) Account number to validate"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0f555577-6abf-42aa-9661-69a851aa567a",
+      "name": "BBANs",
+      "description": {
+        "content": "BBAN to IBAN conversion",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf1e1ef7-87c9-4488-9985-b3d259dab652",
+          "name": "Get IBAN for BBAN",
+          "request": {
+            "name": "Get IBAN for BBAN",
+            "description": {
+              "content": "Converts a Basic Bank Account Number (BBAN) to the corresponding IBAN format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "bbans",
+                ":bban",
+                "iban"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bban",
+                  "description": "(Required) Basic Bank Account Number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f2b532e-ee51-4787-b11c-bb0cc4d3a8d4",
+              "name": "IBAN for the BBAN",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bbans",
+                    ":bban",
+                    "iban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bban",
+                      "description": "(Required) Basic Bank Account Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"iban\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6881030d-b67c-4351-b108-e9e9a92007ef",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "bbans",
+                    ":bban",
+                    "iban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bban",
+                      "description": "(Required) Basic Bank Account Number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.swift.com/swiftrefdata",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "urn:swiftref:external urn:swiftref:internal"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.swift.com/oauth2/v1/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "password_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1dcaf903-1e28-4803-b6ba-f9eba9134efc",
+    "name": "SWIFT SwiftRef API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.\n\nContact Support:\n Name: SWIFT Developer Support\n Email: developer-support@swift.com",
+      "type": "text/plain"
+    }
+  }
+}

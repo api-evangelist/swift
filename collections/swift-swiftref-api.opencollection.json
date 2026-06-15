@@ -1,0 +1,503 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BICs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get BIC Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a BIC (Bank Identifier Code) including institution name, address, and connectivity status."
+        },
+        {
+          "info": {
+            "name": "Validate BIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/validity",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Checks the validity of a BIC code, confirming it is a registered and active BIC in the SWIFT network."
+        },
+        {
+          "info": {
+            "name": "Get LEI for BIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/lei",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Returns the Legal Entity Identifier (LEI) associated with a BIC."
+        },
+        {
+          "info": {
+            "name": "Get National IDs for BIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/national_ids",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Returns all National IDs associated with a BIC."
+        },
+        {
+          "info": {
+            "name": "Validate SEPA Reachability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/reachability",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Validates whether a BIC is reachable via SEPA (Single Euro Payments Area) credit transfer or direct debit schemes."
+        },
+        {
+          "info": {
+            "name": "Get SSIs for BIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/ssis",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Returns Standard Settlement Instructions (SSIs) associated with a BIC."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IBANs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get IBAN Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/ibans/:iban",
+            "params": [
+              {
+                "name": "iban",
+                "value": "DE89370400440532013000",
+                "type": "path",
+                "description": "IBAN (International Bank Account Number) without spaces"
+              }
+            ]
+          },
+          "docs": "Returns details for an IBAN including the associated BIC, bank name, and account holder country."
+        },
+        {
+          "info": {
+            "name": "Validate IBAN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/ibans/:iban/validity",
+            "params": [
+              {
+                "name": "iban",
+                "value": "DE89370400440532013000",
+                "type": "path",
+                "description": "IBAN (International Bank Account Number) without spaces"
+              }
+            ]
+          },
+          "docs": "Validates an IBAN by checking its format, check digits, country code, and BBAN structure."
+        },
+        {
+          "info": {
+            "name": "Get BIC for IBAN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/ibans/:iban/bic",
+            "params": [
+              {
+                "name": "iban",
+                "value": "DE89370400440532013000",
+                "type": "path",
+                "description": "IBAN (International Bank Account Number) without spaces"
+              }
+            ]
+          },
+          "docs": "Returns the BIC associated with a given IBAN."
+        },
+        {
+          "info": {
+            "name": "Get BIC for IBAN National ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/iban_national_ids/:iban_national_id/bic",
+            "params": [
+              {
+                "name": "iban_national_id",
+                "value": "",
+                "type": "path",
+                "description": "IBAN national ID component"
+              }
+            ]
+          },
+          "docs": "Returns the BIC associated with an IBAN national ID component."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BBANs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get IBAN for BBAN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bbans/:bban/iban",
+            "params": [
+              {
+                "name": "bban",
+                "value": "",
+                "type": "path",
+                "description": "Basic Bank Account Number"
+              }
+            ]
+          },
+          "docs": "Converts a Basic Bank Account Number (BBAN) to the corresponding IBAN format."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "LEIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get LEI Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/leis/:lei",
+            "params": [
+              {
+                "name": "lei",
+                "value": "529900T8BM49AURSDO55",
+                "type": "path",
+                "description": "20-character Legal Entity Identifier"
+              }
+            ]
+          },
+          "docs": "Returns details for a Legal Entity Identifier (LEI) including entity name, legal address, and registration status."
+        },
+        {
+          "info": {
+            "name": "Validate LEI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/leis/:lei/validity",
+            "params": [
+              {
+                "name": "lei",
+                "value": "529900T8BM49AURSDO55",
+                "type": "path",
+                "description": "20-character Legal Entity Identifier"
+              }
+            ]
+          },
+          "docs": "Checks whether a Legal Entity Identifier is valid and active in the Global LEI System (GLEIF)."
+        },
+        {
+          "info": {
+            "name": "Get BIC for LEI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/leis/:lei/bic",
+            "params": [
+              {
+                "name": "lei",
+                "value": "529900T8BM49AURSDO55",
+                "type": "path",
+                "description": "20-character Legal Entity Identifier"
+              }
+            ]
+          },
+          "docs": "Returns the BIC associated with a Legal Entity Identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "National IDs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get National ID Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/national_ids/:national_id",
+            "params": [
+              {
+                "name": "national_id",
+                "value": "",
+                "type": "path",
+                "description": "National ID clearing code or routing number"
+              }
+            ]
+          },
+          "docs": "Returns details for a National ID (clearing code, routing number) used for domestic payment routing."
+        },
+        {
+          "info": {
+            "name": "Validate National ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/national_ids/:national_id/validity",
+            "params": [
+              {
+                "name": "national_id",
+                "value": "",
+                "type": "path",
+                "description": "National ID clearing code or routing number"
+              }
+            ]
+          },
+          "docs": "Checks the validity of a National ID (clearing code or routing number)."
+        },
+        {
+          "info": {
+            "name": "Get BICs for National ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/national_ids/:national_id/bics",
+            "params": [
+              {
+                "name": "national_id",
+                "value": "",
+                "type": "path",
+                "description": "National ID clearing code or routing number"
+              }
+            ]
+          },
+          "docs": "Returns the BIC(s) associated with a National ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Country Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Country Code Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/country_codes/:country_code",
+            "params": [
+              {
+                "name": "country_code",
+                "value": "DE",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code"
+              }
+            ]
+          },
+          "docs": "Returns details for an ISO 3166-1 alpha-2 country code including country name and IBAN structure."
+        },
+        {
+          "info": {
+            "name": "Validate Country Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/country_codes/:country_code/validity",
+            "params": [
+              {
+                "name": "country_code",
+                "value": "DE",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code"
+              }
+            ]
+          },
+          "docs": "Checks whether a country code is a valid ISO 3166-1 alpha-2 code."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Currency Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Currency Code Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/currency_codes/:currency_code",
+            "params": [
+              {
+                "name": "currency_code",
+                "value": "EUR",
+                "type": "path",
+                "description": "ISO 4217 currency code"
+              }
+            ]
+          },
+          "docs": "Returns details for an ISO 4217 currency code including currency name and minor units."
+        },
+        {
+          "info": {
+            "name": "Validate Currency Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/currency_codes/:currency_code/validity",
+            "params": [
+              {
+                "name": "currency_code",
+                "value": "EUR",
+                "type": "path",
+                "description": "ISO 4217 currency code"
+              }
+            ]
+          },
+          "docs": "Checks whether a currency code is a valid ISO 4217 code."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account Numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate Account Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/account_numbers/:account_number/validity",
+            "params": [
+              {
+                "name": "account_number",
+                "value": "",
+                "type": "path",
+                "description": "Account number to validate"
+              }
+            ]
+          },
+          "docs": "Checks the validity of various account number formats including IBANs, checking account number format compliance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

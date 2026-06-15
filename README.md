@@ -1,56 +1,134 @@
-# SWIFT
+# SWIFT (swift)
 
-SWIFT (Society for Worldwide Interbank Financial Telecommunication) is a global member-owned cooperative providing secure financial messaging services and reference data to financial institutions worldwide. SWIFT offers REST APIs for cross-border payment tracking (GPI), payment pre-validation, reference data lookup (SwiftRef), transaction screening, and instant payments. All APIs are documented using OpenAPI 3.0 and use OAuth 2.0 JWT-Bearer authentication.
+SWIFT (Society for Worldwide Interbank Financial Telecommunication) is a global member-owned cooperative providing secure financial messaging services and reference data to financial institutions worldwide. SWIFT offers REST APIs for cross-border payment tracking (GPI), payment pre-validation, reference data lookup (SwiftRef), transaction screening, instant payments, and more. APIs use OAuth 2.0 authentication and are documented using OpenAPI 3.0.
 
-- **Website:** https://www.swift.com
-- **Developer Portal:** https://developer.swift.com
-- **API Catalogue:** https://developer.swift.com/apis
-- **Sandbox:** https://sandbox.swift.com
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+
+## Tags
+
+- Banking
+- Cross-Border Payments
+- Financial Messaging
+- Financial Services
+- GPI
+- ISO 20022
+- Payments
+
+## Timestamps
+
+- **Created:** 2025-02-06
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### SwiftRef API
-Real-time lookup and validation of payments reference data including BICs, IBANs, LEIs, National IDs, country codes, and currency codes. Enables financial institutions and fintechs to achieve higher straight-through processing rates.
 
-- **Documentation:** https://developer.swift.com/apis/swiftref-api
-- **Base URL:** https://api.swift.com/swiftrefdata
-- **OpenAPI:** [openapi/swift-swiftref-api-openapi.yml](openapi/swift-swiftref-api-openapi.yml)
+The SwiftRef API provides automated real-time lookup and validation of payments reference data including BICs, IBANs, LEIs, National IDs, country codes, and currency codes. Enables straight-through processing by validating financial identifiers before payment execution.
+
+- **Human URL:** [https://developer.swift.com/apis/swiftref-api](https://developer.swift.com/apis/swiftref-api)
+- **Base URL:** `https://api.swift.com/swiftrefdata`
+
+#### Tags
+
+- BIC Validation
+- Financial Reference Data
+- IBAN Validation
+- LEI Validation
+- Reference Data
+- SwiftRef
+
+#### Properties
+
+- [Documentation](https://developer.swift.com/apis/swiftref-api)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/openapi/swift-swiftref-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/swift-swiftref-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/swift-swiftref-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### SWIFT GPI API
-Real-time cross-border payment tracking using UETR (Unique End-to-End Transaction Reference). Enables financial institutions to track, update statuses, and manage stop/recall requests for GPI payments.
 
-- **Documentation:** https://developer.swift.com/apis/gpi-apis
+The SWIFT GPI (Global Payments Innovation) API enables financial institutions to track cross-border payment transactions in real time, update payment statuses, and manage stop-and-recall requests. Uses Unique End-to-End Transaction Reference (UETR) for tracking. Requires OAuth 2.0 authentication via JWT-Bearer grant type (RFC 7523).
+
+- **Human URL:** [https://developer.swift.com/apis/gpi-apis](https://developer.swift.com/apis/gpi-apis)
+- **Base URL:** `https://api.swift.com/swift-apigateway`
+
+#### Tags
+
+- Cross-Border Payments
+- GPI
+- ISO 20022
+- Payment Tracking
+- Payments
+- UETR
+
+#### Properties
+
+- [Documentation](https://developer.swift.com/apis/gpi-apis)
+- [Postman Collection](collections/swift-swiftref-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/swift-swiftref-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Payment Pre-validation API
-Validates payment instructions before execution to reduce failures. Checks account numbers, BIC reachability, and beneficiary details.
 
-- **Documentation:** https://developer.swift.com/apis/payment-pre-validation-api
+The SWIFT Payment Pre-validation API allows financial institutions and PSPs to verify payment instruction data against reference data and counterparty information before executing a payment. Checks account numbers, country codes, routing information, and beneficiary account validity to reduce failed payments.
 
-## Artifacts
+- **Human URL:** [https://developer.swift.com/apis/payment-pre-validation-api](https://developer.swift.com/apis/payment-pre-validation-api)
 
-| Type | Path |
-|---|---|
-| OpenAPI Specs | [openapi/](openapi/) |
-| Spectral Rules | [rules/swift-rules.yml](rules/swift-rules.yml) |
-| Naftiko Capabilities | [capabilities/](capabilities/) |
-| JSON Schema | [json-schema/](json-schema/) |
-| JSON Structure | [json-structure/](json-structure/) |
-| JSON-LD Context | [json-ld/swift-context.jsonld](json-ld/swift-context.jsonld) |
-| Examples | [examples/](examples/) |
-| Vocabulary | [vocabulary/swift-vocabulary.yml](vocabulary/swift-vocabulary.yml) |
+#### Tags
 
-## Naftiko Capabilities
+- Compliance
+- Payment Pre-validation
+- Payments
+- Risk Management
+- Straight-Through Processing
 
-### Shared Definitions
-- [capabilities/shared/swift-swiftref.yaml](capabilities/shared/swift-swiftref.yaml) — SwiftRef reference data lookup consumer
+#### Properties
 
-### Workflow Capabilities
-- [capabilities/payment-validation.yaml](capabilities/payment-validation.yaml) — Payment identifier validation workflow (SwiftRef, REST port 8080, MCP port 9090, 9 tools)
+- [Documentation](https://developer.swift.com/apis/payment-pre-validation-api)
+- [Product Page](https://www.swift.com/products/payment-pre-validation)
+- [Postman Collection](collections/swift-swiftref-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/swift-swiftref-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Authentication
+### Transaction Screening API
 
-All SWIFT APIs use OAuth 2.0 with JWT-Bearer grant type (RFC 7523). Access requires SWIFT member credentials obtained from the SWIFT Developer Portal.
+The SWIFT Transaction Screening API enables financial institutions to submit transactions to the SWIFT Transaction Screening Service (TSS) for sanctions and compliance screening before processing. Returns screening results with match details.
+
+- **Human URL:** [https://developer.swift.com/](https://developer.swift.com/)
+
+#### Tags
+
+- AML
+- Compliance
+- Payments
+- Sanctions Screening
+- Transaction Screening
+
+#### Properties
+
+- [Postman Collection](collections/swift-swiftref-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/swift-swiftref-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [Website](https://www.swift.com)
+- [Developer Portal](https://developer.swift.com)
+- [A P I Documentation](https://developer.swift.com/apis)
+- [API Reference](https://developer.swift.com/reference)
+- [GitHub Organization](https://github.com/swiftinc)
+- [Sandbox](https://sandbox.swift.com)
+- [Product Page](https://www.swift.com/products/swift-apis)
+- [Support](https://www.swift.com/contact-us)
+- [Terms of Service](https://developer.swift.com/terms)
+- [Privacy Policy](https://www.swift.com/privacy-legal)
+- [I S O20022](https://www.swift.com/standards/iso-20022)
+- [Swift Ref](https://www.swift.com/products/swiftref)
+- [G P I](https://www.swift.com/products/swift-gpi)
+- [Postman Collection](https://www.postman.com/swift-developer-support/swift-api-sandbox-collections) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Login](https://developer.swift.com/login)
 
 ## Maintainers
 
-- Kin Lane (kin@apievangelist.com)
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
