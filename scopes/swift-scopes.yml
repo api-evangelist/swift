@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/swift-swiftref-api-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/swift-swiftref-api-openapi.yml
+  flows:
+  - flow: password
+    tokenUrl: https://api.swift.com/oauth2/v1/token
+scopes:
+- scope: urn:swiftref:external
+  description: External customer access to SwiftRef data
+  flows:
+  - password
+  sources:
+  - openapi/swift-swiftref-api-openapi.yml
+- scope: urn:swiftref:internal
+  description: Internal payment validation access
+  flows:
+  - password
+  sources:
+  - openapi/swift-swiftref-api-openapi.yml
