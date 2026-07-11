@@ -91,6 +91,8 @@ apis:
       - Transaction Screening
     properties: []
 common:
+  - type: DomainSecurity
+    url: security/swift-domain-security.yml
   - type: Authentication
     url: authentication/swift-authentication.yml
   - type: OAuthScopes

@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/swift-swiftref-api-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - password
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: password
+    tokenUrl: https://api.swift.com/oauth2/v1/token
+    scopes: 2
+  sources:
+  - openapi/swift-swiftref-api-openapi.yml
