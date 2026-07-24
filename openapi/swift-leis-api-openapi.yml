@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: SWIFT SwiftRef Account Numbers LEIs API
+  description: The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.
+  version: 2.0.0
+  contact:
+    name: SWIFT Developer Support
+    email: developer-support@swift.com
+    url: https://developer.swift.com
+  termsOfService: https://developer.swift.com/terms
+servers:
+- url: https://api.swift.com/swiftrefdata
+  description: SWIFT SwiftRef Production API
+- url: https://sandbox.swift.com/swiftrefdata
+  description: SWIFT SwiftRef Sandbox
+security:
+- OAuth2: []
+tags:
+- name: LEIs
+  description: LEI (Legal Entity Identifier) lookup and validation
+paths:
+  /v2/leis/{lei}:
+    get:
+      operationId: getLei
+      summary: Get LEI Details
+      description: Returns details for a Legal Entity Identifier (LEI) including entity name, legal address, and registration status.
+      tags:
+      - LEIs
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      responses:
+        '200':
+          description: LEI details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeiDetails'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/leis/{lei}/validity:
+    get:
+      operationId: validateLei
+      summary: Validate LEI
+      description: Checks whether a Legal Entity Identifier is valid and active in the Global LEI System (GLEIF).
+      tags:
+      - LEIs
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      responses:
+        '200':
+          description: LEI validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+  /v2/leis/{lei}/bic:
+    get:
+      operationId: getBicForLei
+      summary: Get BIC for LEI
+      description: Returns the BIC associated with a Legal Entity Identifier.
+      tags:
+      - LEIs
+      parameters:
+      - $ref: '#/components/parameters/lei'
+      responses:
+        '200':
+          description: BIC for the LEI
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bic:
+                    type: string
+components:
+  schemas:
+    LeiDetails:
+      type: object
+      properties:
+        lei:
+          type: string
+          description: Legal Entity Identifier
+        legalName:
+          type: string
+          description: Legal entity name
+        legalAddress:
+          type: object
+          description: Legal address of the entity
+        registrationStatus:
+          type: string
+          description: LEI registration status (ISSUED, LAPSED, etc.)
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
+  responses:
+    NotFound:
+      description: Identifier not found in reference data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+  parameters:
+    lei:
+      name: lei
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Z0-9]{20}$
+      description: 20-character Legal Entity Identifier
+      example: 529900T8BM49AURSDO55
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://api.swift.com/oauth2/v1/token
+          scopes:
+            urn:swiftref:external: External customer access to SwiftRef data
+            urn:swiftref:internal: Internal payment validation access
+externalDocs:
+  description: SWIFT SwiftRef API Documentation
+  url: https://developer.swift.com/apis/swiftref-api

@@ -1,0 +1,82 @@
+openapi: 3.1.0
+info:
+  title: SWIFT SwiftRef Account Numbers API
+  description: The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.
+  version: 2.0.0
+  contact:
+    name: SWIFT Developer Support
+    email: developer-support@swift.com
+    url: https://developer.swift.com
+  termsOfService: https://developer.swift.com/terms
+servers:
+- url: https://api.swift.com/swiftrefdata
+  description: SWIFT SwiftRef Production API
+- url: https://sandbox.swift.com/swiftrefdata
+  description: SWIFT SwiftRef Sandbox
+security:
+- OAuth2: []
+tags:
+- name: Account Numbers
+  description: Account number format validation
+paths:
+  /v2/account_numbers/{account_number}/validity:
+    get:
+      operationId: validateAccountNumber
+      summary: Validate Account Number
+      description: Checks the validity of various account number formats including IBANs, checking account number format compliance.
+      tags:
+      - Account Numbers
+      parameters:
+      - name: account_number
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Account number to validate
+      responses:
+        '200':
+          description: Account number validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
+  responses:
+    BadRequest:
+      description: Bad request - invalid identifier format
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://api.swift.com/oauth2/v1/token
+          scopes:
+            urn:swiftref:external: External customer access to SwiftRef data
+            urn:swiftref:internal: Internal payment validation access
+externalDocs:
+  description: SWIFT SwiftRef API Documentation
+  url: https://developer.swift.com/apis/swiftref-api

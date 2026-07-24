@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: SWIFT SwiftRef Account Numbers National IDs API
+  description: The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.
+  version: 2.0.0
+  contact:
+    name: SWIFT Developer Support
+    email: developer-support@swift.com
+    url: https://developer.swift.com
+  termsOfService: https://developer.swift.com/terms
+servers:
+- url: https://api.swift.com/swiftrefdata
+  description: SWIFT SwiftRef Production API
+- url: https://sandbox.swift.com/swiftrefdata
+  description: SWIFT SwiftRef Sandbox
+security:
+- OAuth2: []
+tags:
+- name: National IDs
+  description: National ID lookup and BIC resolution
+paths:
+  /v2/national_ids/{national_id}:
+    get:
+      operationId: getNationalId
+      summary: Get National ID Details
+      description: Returns details for a National ID (clearing code, routing number) used for domestic payment routing.
+      tags:
+      - National IDs
+      parameters:
+      - $ref: '#/components/parameters/nationalId'
+      responses:
+        '200':
+          description: National ID details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NationalIdDetails'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/national_ids/{national_id}/validity:
+    get:
+      operationId: validateNationalId
+      summary: Validate National ID
+      description: Checks the validity of a National ID (clearing code or routing number).
+      tags:
+      - National IDs
+      parameters:
+      - $ref: '#/components/parameters/nationalId'
+      responses:
+        '200':
+          description: National ID validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+  /v2/national_ids/{national_id}/bics:
+    get:
+      operationId: getBicsForNationalId
+      summary: Get BICs for National ID
+      description: Returns the BIC(s) associated with a National ID.
+      tags:
+      - National IDs
+      parameters:
+      - $ref: '#/components/parameters/nationalId'
+      responses:
+        '200':
+          description: BICs for the National ID
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BicDetails'
+components:
+  schemas:
+    NationalIdDetails:
+      type: object
+      properties:
+        nationalId:
+          type: string
+        type:
+          type: string
+        bankName:
+          type: string
+        countryCode:
+          type: string
+        city:
+          type: string
+    BicDetails:
+      type: object
+      properties:
+        bic:
+          type: string
+          description: Bank Identifier Code
+        institutionName:
+          type: string
+          description: Name of the financial institution
+        countryCode:
+          type: string
+          description: ISO 3166-1 country code
+        city:
+          type: string
+          description: City where the institution is located
+        address:
+          type: string
+          description: Institution address
+        status:
+          type: string
+          description: BIC status (active, passive, etc.)
+        connectedToBIC:
+          type: boolean
+          description: Whether the BIC is connected to SWIFT network
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
+  responses:
+    NotFound:
+      description: Identifier not found in reference data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+  parameters:
+    nationalId:
+      name: national_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: National ID clearing code or routing number
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://api.swift.com/oauth2/v1/token
+          scopes:
+            urn:swiftref:external: External customer access to SwiftRef data
+            urn:swiftref:internal: Internal payment validation access
+externalDocs:
+  description: SWIFT SwiftRef API Documentation
+  url: https://developer.swift.com/apis/swiftref-api

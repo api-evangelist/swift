@@ -1,0 +1,182 @@
+openapi: 3.1.0
+info:
+  title: SWIFT SwiftRef Account Numbers IBANs API
+  description: The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.
+  version: 2.0.0
+  contact:
+    name: SWIFT Developer Support
+    email: developer-support@swift.com
+    url: https://developer.swift.com
+  termsOfService: https://developer.swift.com/terms
+servers:
+- url: https://api.swift.com/swiftrefdata
+  description: SWIFT SwiftRef Production API
+- url: https://sandbox.swift.com/swiftrefdata
+  description: SWIFT SwiftRef Sandbox
+security:
+- OAuth2: []
+tags:
+- name: IBANs
+  description: IBAN (International Bank Account Number) lookup and validation
+paths:
+  /v2/ibans/{iban}:
+    get:
+      operationId: getIban
+      summary: Get IBAN Details
+      description: Returns details for an IBAN including the associated BIC, bank name, and account holder country.
+      tags:
+      - IBANs
+      parameters:
+      - $ref: '#/components/parameters/iban'
+      responses:
+        '200':
+          description: IBAN details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IbanDetails'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/ibans/{iban}/validity:
+    get:
+      operationId: validateIban
+      summary: Validate IBAN
+      description: Validates an IBAN by checking its format, check digits, country code, and BBAN structure.
+      tags:
+      - IBANs
+      parameters:
+      - $ref: '#/components/parameters/iban'
+      responses:
+        '200':
+          description: IBAN validity result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidityResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v2/ibans/{iban}/bic:
+    get:
+      operationId: getBicForIban
+      summary: Get BIC for IBAN
+      description: Returns the BIC associated with a given IBAN.
+      tags:
+      - IBANs
+      parameters:
+      - $ref: '#/components/parameters/iban'
+      responses:
+        '200':
+          description: BIC for the IBAN
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bic:
+                    type: string
+                    description: Bank Identifier Code
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/iban_national_ids/{iban_national_id}/bic:
+    get:
+      operationId: getBicForIbanNationalId
+      summary: Get BIC for IBAN National ID
+      description: Returns the BIC associated with an IBAN national ID component.
+      tags:
+      - IBANs
+      parameters:
+      - name: iban_national_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: IBAN national ID component
+      responses:
+        '200':
+          description: BIC for the IBAN national ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bic:
+                    type: string
+components:
+  schemas:
+    IbanDetails:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: International Bank Account Number
+        bic:
+          type: string
+          description: Associated BIC
+        countryCode:
+          type: string
+          description: Country code from IBAN
+        bankCode:
+          type: string
+          description: Bank code extracted from IBAN
+        accountNumber:
+          type: string
+          description: Account number extracted from IBAN
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
+  responses:
+    NotFound:
+      description: Identifier not found in reference data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    BadRequest:
+      description: Bad request - invalid identifier format
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+  parameters:
+    iban:
+      name: iban
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$
+      description: IBAN (International Bank Account Number) without spaces
+      example: DE89370400440532013000
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: https://api.swift.com/oauth2/v1/token
+          scopes:
+            urn:swiftref:external: External customer access to SwiftRef data
+            urn:swiftref:internal: Internal payment validation access
+externalDocs:
+  description: SWIFT SwiftRef API Documentation
+  url: https://developer.swift.com/apis/swiftref-api
