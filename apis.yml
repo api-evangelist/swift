@@ -6,7 +6,20 @@ description: >-
   cross-border payment tracking (GPI), payment pre-validation, reference data lookup (SwiftRef), transaction screening,
   instant payments, and more. APIs use OAuth 2.0 authentication and are documented using OpenAPI 3.0.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/swift.png
 tags:
   - Banking
   - Cross-Border Payments
@@ -20,77 +33,156 @@ created: '2025-02-06'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: swift:swiftref-api
-    name: SwiftRef API
-    description: >-
-      The SwiftRef API provides automated real-time lookup and validation of payments reference data including BICs,
-      IBANs, LEIs, National IDs, country codes, and currency codes. Enables straight-through processing by validating
-      financial identifiers before payment execution.
-    humanURL: https://developer.swift.com/apis/swiftref-api
-    baseURL: https://api.swift.com/swiftrefdata
-    properties:
-      - type: Documentation
-        url: https://developer.swift.com/apis/swiftref-api
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/openapi/swift-swiftref-api-openapi.yml
-    tags:
-      - BIC Validation
-      - Financial Reference Data
-      - IBAN Validation
-      - LEI Validation
-      - Reference Data
-      - SwiftRef
-  - aid: swift:swift-gpi-api
-    name: SWIFT GPI API
-    description: >-
-      The SWIFT GPI (Global Payments Innovation) API enables financial institutions to track cross-border payment
-      transactions in real time, update payment statuses, and manage stop-and-recall requests. Uses Unique End-to-End
-      Transaction Reference (UETR) for tracking. Requires OAuth 2.0 authentication via JWT-Bearer grant type (RFC 7523).
-    humanURL: https://developer.swift.com/apis/gpi-apis
-    baseURL: https://api.swift.com/swift-apigateway
-    properties:
-      - type: Documentation
-        url: https://developer.swift.com/apis/gpi-apis
-    tags:
-      - Cross-Border Payments
-      - GPI
-      - ISO 20022
-      - Payment Tracking
-      - Payments
-      - UETR
-  - aid: swift:payment-pre-validation-api
-    name: Payment Pre-validation API
-    description: >-
-      The SWIFT Payment Pre-validation API allows financial institutions and PSPs to verify payment instruction data
-      against reference data and counterparty information before executing a payment. Checks account numbers, country
-      codes, routing information, and beneficiary account validity to reduce failed payments.
-    humanURL: https://developer.swift.com/apis/payment-pre-validation-api
-    tags:
-      - Compliance
-      - Payment Pre-validation
-      - Payments
-      - Risk Management
-      - Straight-Through Processing
-    properties:
-      - type: Documentation
-        url: https://developer.swift.com/apis/payment-pre-validation-api
-      - type: ProductPage
-        url: https://www.swift.com/products/payment-pre-validation
-  - aid: swift:transaction-screening-api
-    name: Transaction Screening API
-    description: >-
-      The SWIFT Transaction Screening API enables financial institutions to submit transactions to the SWIFT Transaction
-      Screening Service (TSS) for sanctions and compliance screening before processing. Returns screening results with
-      match details.
-    humanURL: https://developer.swift.com/
-    tags:
-      - AML
-      - Compliance
-      - Payments
-      - Sanctions Screening
-      - Transaction Screening
-    properties: []
+- aid: swift:swift-gpi-api
+  name: SWIFT GPI API
+  description: >-
+    The SWIFT GPI (Global Payments Innovation) API enables financial institutions to track cross-border
+    payment transactions in real time, update payment statuses, and manage stop-and-recall requests. Uses
+    Unique End-to-End Transaction Reference (UETR) for tracking. Requires OAuth 2.0 authentication via
+    JWT-Bearer grant type (RFC 7523).
+  humanURL: https://developer.swift.com/apis/gpi-apis
+  baseURL: https://api.swift.com/swift-apigateway
+  properties:
+  - type: Documentation
+    url: https://developer.swift.com/apis/gpi-apis
+  tags:
+  - Cross-Border Payments
+  - GPI
+  - ISO 20022
+  - Payment Tracking
+  - Payments
+  - UETR
+- aid: swift:payment-pre-validation-api
+  name: Payment Pre-validation API
+  description: >-
+    The SWIFT Payment Pre-validation API allows financial institutions and PSPs to verify payment instruction
+    data against reference data and counterparty information before executing a payment. Checks account
+    numbers, country codes, routing information, and beneficiary account validity to reduce failed payments.
+  humanURL: https://developer.swift.com/apis/payment-pre-validation-api
+  tags:
+  - Compliance
+  - Payment Pre-validation
+  - Payments
+  - Risk Management
+  - Straight-Through Processing
+  properties:
+  - type: Documentation
+    url: https://developer.swift.com/apis/payment-pre-validation-api
+  - type: ProductPage
+    url: https://www.swift.com/products/payment-pre-validation
+- aid: swift:transaction-screening-api
+  name: Transaction Screening API
+  description: >-
+    The SWIFT Transaction Screening API enables financial institutions to submit transactions to the SWIFT
+    Transaction Screening Service (TSS) for sanctions and compliance screening before processing. Returns
+    screening results with match details.
+  humanURL: https://developer.swift.com/
+  tags:
+  - AML
+  - Compliance
+  - Payments
+  - Sanctions Screening
+  - Transaction Screening
+  properties: []
+- aid: swift:swift-account-numbers-api
+  name: SWIFT Account Numbers API
+  description: Account number format validation
+  humanURL: https://developer.swift.com/apis/swiftref-api
+  baseURL: https://api.swift.com/swiftrefdata
+  tags:
+  - Account Numbers
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-account-numbers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
+- aid: swift:swift-bbans-api
+  name: SWIFT BBANs API
+  description: BBAN to IBAN conversion
+  humanURL: https://developer.swift.com/apis/swiftref-api
+  baseURL: https://api.swift.com/swiftrefdata
+  tags:
+  - BBANs
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-bbans-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
+- aid: swift:swift-bics-api
+  name: SWIFT BICs API
+  description: BIC (Bank Identifier Code) lookup and validation
+  humanURL: https://developer.swift.com/apis/swiftref-api
+  baseURL: https://api.swift.com/swiftrefdata
+  tags:
+  - BICs
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-bics-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
+- aid: swift:swift-country-codes-api
+  name: SWIFT Country Codes API
+  description: Country code lookup and validation
+  humanURL: https://developer.swift.com/apis/swiftref-api
+  baseURL: https://api.swift.com/swiftrefdata
+  tags:
+  - Country Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-country-codes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
+- aid: swift:swift-currency-codes-api
+  name: SWIFT Currency Codes API
+  description: Currency code lookup and validation
+  humanURL: https://developer.swift.com/apis/swiftref-api
+  baseURL: https://api.swift.com/swiftrefdata
+  tags:
+  - Currency Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-currency-codes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
+- aid: swift:swift-ibans-api
+  name: SWIFT IBANs API
+  description: IBAN (International Bank Account Number) lookup and validation
+  humanURL: https://developer.swift.com/apis/swiftref-api
+  baseURL: https://api.swift.com/swiftrefdata
+  tags:
+  - IBANs
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-ibans-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
+- aid: swift:swift-leis-api
+  name: SWIFT LEIs API
+  description: LEI (Legal Entity Identifier) lookup and validation
+  humanURL: https://developer.swift.com/apis/swiftref-api
+  baseURL: https://api.swift.com/swiftrefdata
+  tags:
+  - LEIs
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-leis-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
+- aid: swift:swift-national-ids-api
+  name: SWIFT National IDs API
+  description: National ID lookup and BIC resolution
+  humanURL: https://developer.swift.com/apis/swiftref-api
+  baseURL: https://api.swift.com/swiftrefdata
+  tags:
+  - National IDs
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-national-ids-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/swift/overview
   - type: AgenticAccess
     url: agentic-access/swift-agentic-access.yml
   - type: DomainSecurity
