@@ -1,0 +1,218 @@
+{
+  "info": {
+    "_postman_id": "4d441236-b8e3-4c18-8ec5-d28f6a9000a0",
+    "name": "SWIFT SwiftRef Account Numbers API",
+    "description": "The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.\n\nContact Support:\n Name: SWIFT Developer Support\n Email: developer-support@swift.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:52.000Z",
+    "updatedAt": "2026-07-28T03:06:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4d441236-b8e3-4c18-8ec5-d28f6a9000a0"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "account_numbers",
+          "item": [
+            {
+              "name": "{account_number}",
+              "item": [
+                {
+                  "name": "validity",
+                  "item": [
+                    {
+                      "name": "Validate Account Number",
+                      "id": "56a3025d-5d62-4395-ae8a-a7addf7d328c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/account_numbers/:account_number/validity",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "account_numbers",
+                            ":account_number",
+                            "validity"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dcc16c61-2916-4041-8573-d0c8d05ac42b",
+                              "key": "account_number",
+                              "value": "<string>",
+                              "description": "(Required) Account number to validate"
+                            }
+                          ]
+                        },
+                        "description": "Checks the validity of various account number formats including IBANs, checking account number format compliance."
+                      },
+                      "response": [
+                        {
+                          "id": "3792d419-0351-4892-8774-489dc9b45fc5",
+                          "name": "Account number validity result",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/account_numbers/:account_number/validity",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "account_numbers",
+                                ":account_number",
+                                "validity"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_number"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"valid\": \"<boolean>\",\n  \"errorCode\": \"<string>\",\n  \"errorDescription\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:52.000Z",
+                          "updatedAt": "2026-07-28T03:06:52.000Z",
+                          "uid": "35240-3792d419-0351-4892-8774-489dc9b45fc5"
+                        },
+                        {
+                          "id": "29565ee4-3f1a-42b2-b561-ee0e685cd40b",
+                          "name": "Bad request - invalid identifier format",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/account_numbers/:account_number/validity",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "account_numbers",
+                                ":account_number",
+                                "validity"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "account_number"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:52.000Z",
+                          "updatedAt": "2026-07-28T03:06:52.000Z",
+                          "uid": "35240-29565ee4-3f1a-42b2-b561-ee0e685cd40b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:52.000Z",
+                      "updatedAt": "2026-07-28T03:06:52.000Z",
+                      "uid": "35240-56a3025d-5d62-4395-ae8a-a7addf7d328c"
+                    }
+                  ],
+                  "id": "24ab1851-f69e-4161-9f49-c454c8973fb7",
+                  "createdAt": "2026-07-28T03:06:52.000Z",
+                  "updatedAt": "2026-07-28T03:06:52.000Z",
+                  "uid": "35240-24ab1851-f69e-4161-9f49-c454c8973fb7"
+                }
+              ],
+              "id": "3f547dc0-45ed-4b7f-bc80-f5f4bf733665",
+              "createdAt": "2026-07-28T03:06:52.000Z",
+              "updatedAt": "2026-07-28T03:06:52.000Z",
+              "uid": "35240-3f547dc0-45ed-4b7f-bc80-f5f4bf733665"
+            }
+          ],
+          "id": "371edff4-15ed-4560-bffe-812e7d331312",
+          "createdAt": "2026-07-28T03:06:52.000Z",
+          "updatedAt": "2026-07-28T03:06:52.000Z",
+          "uid": "35240-371edff4-15ed-4560-bffe-812e7d331312"
+        }
+      ],
+      "id": "9c400c04-229d-4586-8c72-a2fead133112",
+      "createdAt": "2026-07-28T03:06:52.000Z",
+      "updatedAt": "2026-07-28T03:06:52.000Z",
+      "uid": "35240-9c400c04-229d-4586-8c72-a2fead133112"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "urn:swiftref:external urn:swiftref:internal",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.swift.com/oauth2/v1/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "password_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.swift.com/swiftrefdata"
+    }
+  ]
+}

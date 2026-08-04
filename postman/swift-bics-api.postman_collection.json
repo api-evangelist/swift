@@ -1,0 +1,1109 @@
+{
+  "info": {
+    "_postman_id": "b01624aa-2bf8-4cdf-860f-64c3c72ef6ff",
+    "name": "SWIFT SwiftRef Account Numbers BICs API",
+    "description": "The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.\n\nContact Support:\n Name: SWIFT Developer Support\n Email: developer-support@swift.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:53.000Z",
+    "updatedAt": "2026-07-28T03:06:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b01624aa-2bf8-4cdf-860f-64c3c72ef6ff"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "bics",
+          "item": [
+            {
+              "name": "{bic}",
+              "item": [
+                {
+                  "name": "validity",
+                  "item": [
+                    {
+                      "name": "Validate BIC",
+                      "id": "48af5763-d991-4103-9457-037a89be4066",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic/validity",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic",
+                            "validity"
+                          ],
+                          "variable": [
+                            {
+                              "id": "37fd169a-febb-438e-a4c3-470b3ed1531a",
+                              "key": "bic",
+                              "value": "ASPGDKWH",
+                              "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                            }
+                          ]
+                        },
+                        "description": "Checks the validity of a BIC code, confirming it is a registered and active BIC in the SWIFT network."
+                      },
+                      "response": [
+                        {
+                          "id": "6ca05281-55d6-4a36-acf5-e7f75322f2f7",
+                          "name": "BIC validity result",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/validity",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "validity"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"valid\": \"<boolean>\",\n  \"errorCode\": \"<string>\",\n  \"errorDescription\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-6ca05281-55d6-4a36-acf5-e7f75322f2f7"
+                        },
+                        {
+                          "id": "b4d913b7-ba1e-4d31-9b9b-ae2e8f9de088",
+                          "name": "Bad request - invalid identifier format",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/validity",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "validity"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-b4d913b7-ba1e-4d31-9b9b-ae2e8f9de088"
+                        },
+                        {
+                          "id": "b2df94a3-56fa-47d8-895b-cb9a73183d55",
+                          "name": "Unauthorized - invalid or expired OAuth token",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/validity",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "validity"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-b2df94a3-56fa-47d8-895b-cb9a73183d55"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-48af5763-d991-4103-9457-037a89be4066"
+                    }
+                  ],
+                  "id": "55577c59-5f14-414b-a01c-11db17d2b133",
+                  "createdAt": "2026-07-28T03:06:54.000Z",
+                  "updatedAt": "2026-07-28T03:06:54.000Z",
+                  "uid": "35240-55577c59-5f14-414b-a01c-11db17d2b133"
+                },
+                {
+                  "name": "lei",
+                  "item": [
+                    {
+                      "name": "Get LEI for BIC",
+                      "id": "25c6c36f-4002-4967-87d1-f7c948fc4093",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic/lei",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic",
+                            "lei"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e3ecbe80-ada9-437a-bb29-f472f0f27dea",
+                              "key": "bic",
+                              "value": "ASPGDKWH",
+                              "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                            }
+                          ]
+                        },
+                        "description": "Returns the Legal Entity Identifier (LEI) associated with a BIC."
+                      },
+                      "response": [
+                        {
+                          "id": "875ff641-377d-47a1-abdf-03ffac82930f",
+                          "name": "LEI for the BIC",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/lei",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "lei"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"lei\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-875ff641-377d-47a1-abdf-03ffac82930f"
+                        },
+                        {
+                          "id": "c0332619-d9ce-4434-8d58-c9f9a40b15b3",
+                          "name": "Identifier not found in reference data",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/lei",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "lei"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-c0332619-d9ce-4434-8d58-c9f9a40b15b3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-25c6c36f-4002-4967-87d1-f7c948fc4093"
+                    }
+                  ],
+                  "id": "a01bc127-2191-4039-9683-f1f0e4c5cec9",
+                  "createdAt": "2026-07-28T03:06:54.000Z",
+                  "updatedAt": "2026-07-28T03:06:54.000Z",
+                  "uid": "35240-a01bc127-2191-4039-9683-f1f0e4c5cec9"
+                },
+                {
+                  "name": "national_ids",
+                  "item": [
+                    {
+                      "name": "Get National IDs for BIC",
+                      "id": "eeeeeb39-c796-43ef-bb2f-9d2626bfc646",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic/national_ids",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic",
+                            "national_ids"
+                          ],
+                          "variable": [
+                            {
+                              "id": "600a3d7b-d8bb-446d-9226-40626453e749",
+                              "key": "bic",
+                              "value": "ASPGDKWH",
+                              "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                            }
+                          ]
+                        },
+                        "description": "Returns all National IDs associated with a BIC."
+                      },
+                      "response": [
+                        {
+                          "id": "57e3f888-dbbf-42d4-b64e-2604c70baaaf",
+                          "name": "National IDs for the BIC",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/national_ids",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "national_ids"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"nationalId\": \"<string>\",\n    \"type\": \"<string>\",\n    \"countryCode\": \"<string>\"\n  },\n  {\n    \"nationalId\": \"<string>\",\n    \"type\": \"<string>\",\n    \"countryCode\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-57e3f888-dbbf-42d4-b64e-2604c70baaaf"
+                        },
+                        {
+                          "id": "91d4c863-de3c-4beb-a785-dcefa0bf0a55",
+                          "name": "Identifier not found in reference data",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/national_ids",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "national_ids"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-91d4c863-de3c-4beb-a785-dcefa0bf0a55"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-eeeeeb39-c796-43ef-bb2f-9d2626bfc646"
+                    }
+                  ],
+                  "id": "3f3d8405-caf3-4f72-a69d-5a51ce834a57",
+                  "createdAt": "2026-07-28T03:06:54.000Z",
+                  "updatedAt": "2026-07-28T03:06:54.000Z",
+                  "uid": "35240-3f3d8405-caf3-4f72-a69d-5a51ce834a57"
+                },
+                {
+                  "name": "reachability",
+                  "item": [
+                    {
+                      "name": "Validate SEPA Reachability",
+                      "id": "7bc64149-9586-4a09-a458-8e7932d2a0aa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic/reachability",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic",
+                            "reachability"
+                          ],
+                          "variable": [
+                            {
+                              "id": "05b1752a-7ad6-4175-9fdf-e4dce8877557",
+                              "key": "bic",
+                              "value": "ASPGDKWH",
+                              "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                            }
+                          ]
+                        },
+                        "description": "Validates whether a BIC is reachable via SEPA (Single Euro Payments Area) credit transfer or direct debit schemes."
+                      },
+                      "response": [
+                        {
+                          "id": "0b757c0a-3c92-4ded-b6ff-3c4db3a26a29",
+                          "name": "SEPA reachability status",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/reachability",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "reachability"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"sepaCtReachable\": \"<boolean>\",\n  \"sepaDirectDebitReachable\": \"<boolean>\",\n  \"sepaInstantReachable\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-0b757c0a-3c92-4ded-b6ff-3c4db3a26a29"
+                        },
+                        {
+                          "id": "9bcd3280-f9ce-4d50-999a-c9ca1147e587",
+                          "name": "Identifier not found in reference data",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/reachability",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "reachability"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-9bcd3280-f9ce-4d50-999a-c9ca1147e587"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-7bc64149-9586-4a09-a458-8e7932d2a0aa"
+                    }
+                  ],
+                  "id": "86274bec-d90a-4f07-be53-08e3eda47da0",
+                  "createdAt": "2026-07-28T03:06:54.000Z",
+                  "updatedAt": "2026-07-28T03:06:54.000Z",
+                  "uid": "35240-86274bec-d90a-4f07-be53-08e3eda47da0"
+                },
+                {
+                  "name": "ssis",
+                  "item": [
+                    {
+                      "name": "Get SSIs for BIC",
+                      "id": "7c5a1166-4dac-492b-848c-11c5a75316ae",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic/ssis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic",
+                            "ssis"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ca351c95-3175-4eeb-b7db-3f001d83281c",
+                              "key": "bic",
+                              "value": "ASPGDKWH",
+                              "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                            }
+                          ]
+                        },
+                        "description": "Returns Standard Settlement Instructions (SSIs) associated with a BIC."
+                      },
+                      "response": [
+                        {
+                          "id": "fe057f8a-a8f1-4939-a586-31d717623463",
+                          "name": "SSIs for the BIC",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/ssis",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "ssis"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[]",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-fe057f8a-a8f1-4939-a586-31d717623463"
+                        },
+                        {
+                          "id": "bf61f3c9-163c-4834-8602-c77c0f43c574",
+                          "name": "Identifier not found in reference data",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bics/:bic/ssis",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bics",
+                                ":bic",
+                                "ssis"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bic"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:54.000Z",
+                          "updatedAt": "2026-07-28T03:06:54.000Z",
+                          "uid": "35240-bf61f3c9-163c-4834-8602-c77c0f43c574"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-7c5a1166-4dac-492b-848c-11c5a75316ae"
+                    }
+                  ],
+                  "id": "c1729031-f9d2-47fd-978a-a7f6056dbf35",
+                  "createdAt": "2026-07-28T03:06:54.000Z",
+                  "updatedAt": "2026-07-28T03:06:54.000Z",
+                  "uid": "35240-c1729031-f9d2-47fd-978a-a7f6056dbf35"
+                },
+                {
+                  "name": "Get BIC Details",
+                  "id": "b9c1c4ef-9770-4164-add2-12eb3a781cfb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/bics/:bic",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "bics",
+                        ":bic"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7f6d955f-ad14-4760-9a54-2cf244bd50b2",
+                          "key": "bic",
+                          "value": "ASPGDKWH",
+                          "description": "(Required) 8 or 11 character BIC (Bank Identifier Code)"
+                        }
+                      ]
+                    },
+                    "description": "Returns detailed information about a BIC (Bank Identifier Code) including institution name, address, and connectivity status."
+                  },
+                  "response": [
+                    {
+                      "id": "b6f16ab9-c96e-4d6b-b0e2-0517f7fb6e85",
+                      "name": "BIC details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic"
+                          ],
+                          "variable": [
+                            {
+                              "key": "bic"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"bic\": \"<string>\",\n  \"institutionName\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"status\": \"<string>\",\n  \"connectedToBIC\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-b6f16ab9-c96e-4d6b-b0e2-0517f7fb6e85"
+                    },
+                    {
+                      "id": "a33f5e95-4996-463a-91be-8845300d512e",
+                      "name": "Bad request - invalid identifier format",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic"
+                          ],
+                          "variable": [
+                            {
+                              "key": "bic"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-a33f5e95-4996-463a-91be-8845300d512e"
+                    },
+                    {
+                      "id": "89dec0fd-90ef-4a4d-a775-94df727e5032",
+                      "name": "Unauthorized - invalid or expired OAuth token",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic"
+                          ],
+                          "variable": [
+                            {
+                              "key": "bic"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-89dec0fd-90ef-4a4d-a775-94df727e5032"
+                    },
+                    {
+                      "id": "1df5dfd7-3252-4ddb-943c-a32d48724248",
+                      "name": "Identifier not found in reference data",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bics/:bic",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bics",
+                            ":bic"
+                          ],
+                          "variable": [
+                            {
+                              "key": "bic"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:06:54.000Z",
+                      "updatedAt": "2026-07-28T03:06:54.000Z",
+                      "uid": "35240-1df5dfd7-3252-4ddb-943c-a32d48724248"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:06:54.000Z",
+                  "updatedAt": "2026-07-28T03:06:54.000Z",
+                  "uid": "35240-b9c1c4ef-9770-4164-add2-12eb3a781cfb"
+                }
+              ],
+              "id": "9372208e-e1ab-472c-966a-20691878466a",
+              "createdAt": "2026-07-28T03:06:54.000Z",
+              "updatedAt": "2026-07-28T03:06:54.000Z",
+              "uid": "35240-9372208e-e1ab-472c-966a-20691878466a"
+            }
+          ],
+          "id": "9a156933-abf9-4afd-bb34-a2af63a16e1a",
+          "createdAt": "2026-07-28T03:06:54.000Z",
+          "updatedAt": "2026-07-28T03:06:54.000Z",
+          "uid": "35240-9a156933-abf9-4afd-bb34-a2af63a16e1a"
+        }
+      ],
+      "id": "9e901e10-b96d-46cc-9d61-8b05bc60ca43",
+      "createdAt": "2026-07-28T03:06:54.000Z",
+      "updatedAt": "2026-07-28T03:06:54.000Z",
+      "uid": "35240-9e901e10-b96d-46cc-9d61-8b05bc60ca43"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "urn:swiftref:external urn:swiftref:internal",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.swift.com/oauth2/v1/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "password_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.swift.com/swiftrefdata"
+    }
+  ]
+}

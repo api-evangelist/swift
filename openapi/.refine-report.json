@@ -1,0 +1,28 @@
+{
+  "provider": "swift",
+  "sources": [
+    "swift-account-numbers-api-openapi.yml",
+    "swift-bbans-api-openapi.yml",
+    "swift-bics-api-openapi.yml",
+    "swift-country-codes-api-openapi.yml",
+    "swift-currency-codes-api-openapi.yml",
+    "swift-ibans-api-openapi.yml",
+    "swift-leis-api-openapi.yml",
+    "swift-national-ids-api-openapi.yml"
+  ],
+  "outputs": [
+    "swift-account-numbers-api-openapi.yml",
+    "swift-bbans-api-openapi.yml",
+    "swift-bics-api-openapi.yml",
+    "swift-country-codes-api-openapi.yml",
+    "swift-currency-codes-api-openapi.yml",
+    "swift-ibans-api-openapi.yml",
+    "swift-leis-api-openapi.yml",
+    "swift-national-ids-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

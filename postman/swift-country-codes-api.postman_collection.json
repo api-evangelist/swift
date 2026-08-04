@@ -1,0 +1,307 @@
+{
+  "info": {
+    "_postman_id": "9f58f5ba-084d-4ba2-955d-9599110afefe",
+    "name": "SWIFT SwiftRef Account Numbers Country Codes API",
+    "description": "The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.\n\nContact Support:\n Name: SWIFT Developer Support\n Email: developer-support@swift.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:02.000Z",
+    "updatedAt": "2026-07-28T03:07:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9f58f5ba-084d-4ba2-955d-9599110afefe"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "country_codes",
+          "item": [
+            {
+              "name": "{country_code}",
+              "item": [
+                {
+                  "name": "validity",
+                  "item": [
+                    {
+                      "name": "Validate Country Code",
+                      "id": "2e12a9ab-9fe6-4138-85bc-7750b0b176be",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/country_codes/:country_code/validity",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "country_codes",
+                            ":country_code",
+                            "validity"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3c19b5e0-a242-4049-ac07-bc5d2f92b618",
+                              "key": "country_code",
+                              "value": "UE",
+                              "description": "(Required) ISO 3166-1 alpha-2 country code"
+                            }
+                          ]
+                        },
+                        "description": "Checks whether a country code is a valid ISO 3166-1 alpha-2 code."
+                      },
+                      "response": [
+                        {
+                          "id": "20c977e1-5859-4e75-ba40-13cdb0167a41",
+                          "name": "Country code validity result",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/country_codes/:country_code/validity",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "country_codes",
+                                ":country_code",
+                                "validity"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "country_code"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"valid\": \"<boolean>\",\n  \"errorCode\": \"<string>\",\n  \"errorDescription\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:07:03.000Z",
+                          "updatedAt": "2026-07-28T03:07:03.000Z",
+                          "uid": "35240-20c977e1-5859-4e75-ba40-13cdb0167a41"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:07:03.000Z",
+                      "updatedAt": "2026-07-28T03:07:03.000Z",
+                      "uid": "35240-2e12a9ab-9fe6-4138-85bc-7750b0b176be"
+                    }
+                  ],
+                  "id": "50d4d93e-ad57-41bd-80af-e6bc9e6f71c7",
+                  "createdAt": "2026-07-28T03:07:03.000Z",
+                  "updatedAt": "2026-07-28T03:07:03.000Z",
+                  "uid": "35240-50d4d93e-ad57-41bd-80af-e6bc9e6f71c7"
+                },
+                {
+                  "name": "Get Country Code Details",
+                  "id": "bfb75671-4c04-4ab3-872c-c9d2749d7d82",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/country_codes/:country_code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "country_codes",
+                        ":country_code"
+                      ],
+                      "variable": [
+                        {
+                          "id": "95bbb727-36a7-49da-a131-8d93ec7badc9",
+                          "key": "country_code",
+                          "value": "UE",
+                          "description": "(Required) ISO 3166-1 alpha-2 country code"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for an ISO 3166-1 alpha-2 country code including country name and IBAN structure."
+                  },
+                  "response": [
+                    {
+                      "id": "dfb029f7-d19e-47a7-988f-121de4bee2dc",
+                      "name": "Country code details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/country_codes/:country_code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "country_codes",
+                            ":country_code"
+                          ],
+                          "variable": [
+                            {
+                              "key": "country_code"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"countryCode\": \"<string>\",\n  \"countryName\": \"<string>\",\n  \"ibanLength\": \"<integer>\",\n  \"ibanStructure\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:03.000Z",
+                      "updatedAt": "2026-07-28T03:07:03.000Z",
+                      "uid": "35240-dfb029f7-d19e-47a7-988f-121de4bee2dc"
+                    },
+                    {
+                      "id": "bae2933a-6769-494f-893c-1b5f2c00c984",
+                      "name": "Identifier not found in reference data",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/country_codes/:country_code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "country_codes",
+                            ":country_code"
+                          ],
+                          "variable": [
+                            {
+                              "key": "country_code"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:07:03.000Z",
+                      "updatedAt": "2026-07-28T03:07:03.000Z",
+                      "uid": "35240-bae2933a-6769-494f-893c-1b5f2c00c984"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:03.000Z",
+                  "updatedAt": "2026-07-28T03:07:03.000Z",
+                  "uid": "35240-bfb75671-4c04-4ab3-872c-c9d2749d7d82"
+                }
+              ],
+              "id": "6b232346-3a88-4c45-9b41-7a3a029ce125",
+              "createdAt": "2026-07-28T03:07:03.000Z",
+              "updatedAt": "2026-07-28T03:07:03.000Z",
+              "uid": "35240-6b232346-3a88-4c45-9b41-7a3a029ce125"
+            }
+          ],
+          "id": "e045bc52-5740-47c0-af62-a98b3c300dec",
+          "createdAt": "2026-07-28T03:07:03.000Z",
+          "updatedAt": "2026-07-28T03:07:03.000Z",
+          "uid": "35240-e045bc52-5740-47c0-af62-a98b3c300dec"
+        }
+      ],
+      "id": "8db46a21-4ff6-48e6-9657-d646cccb6b19",
+      "createdAt": "2026-07-28T03:07:03.000Z",
+      "updatedAt": "2026-07-28T03:07:03.000Z",
+      "uid": "35240-8db46a21-4ff6-48e6-9657-d646cccb6b19"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "urn:swiftref:external urn:swiftref:internal",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.swift.com/oauth2/v1/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "password_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.swift.com/swiftrefdata"
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "info": {
+    "_postman_id": "cc7c6ec0-9351-4b39-b08c-c8dd37c4f60f",
+    "name": "SWIFT SwiftRef Account Numbers BBANs API",
+    "description": "The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.\n\nContact Support:\n Name: SWIFT Developer Support\n Email: developer-support@swift.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:06:52.000Z",
+    "updatedAt": "2026-07-28T03:06:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cc7c6ec0-9351-4b39-b08c-c8dd37c4f60f"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "bbans",
+          "item": [
+            {
+              "name": "{bban}",
+              "item": [
+                {
+                  "name": "iban",
+                  "item": [
+                    {
+                      "name": "Get IBAN for BBAN",
+                      "id": "b1bd9ac8-0534-4e2d-8236-6bb4af162474",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/bbans/:bban/iban",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "bbans",
+                            ":bban",
+                            "iban"
+                          ],
+                          "variable": [
+                            {
+                              "id": "453620aa-c298-4ff3-a393-37c087ca7bfa",
+                              "key": "bban",
+                              "value": "<string>",
+                              "description": "(Required) Basic Bank Account Number"
+                            }
+                          ]
+                        },
+                        "description": "Converts a Basic Bank Account Number (BBAN) to the corresponding IBAN format."
+                      },
+                      "response": [
+                        {
+                          "id": "0e965be5-a8ea-4ffc-9430-eaacfd6dd3a0",
+                          "name": "IBAN for the BBAN",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bbans/:bban/iban",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bbans",
+                                ":bban",
+                                "iban"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bban"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"iban\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:53.000Z",
+                          "updatedAt": "2026-07-28T03:06:53.000Z",
+                          "uid": "35240-0e965be5-a8ea-4ffc-9430-eaacfd6dd3a0"
+                        },
+                        {
+                          "id": "437b63bc-4625-47de-809b-41304594f068",
+                          "name": "Identifier not found in reference data",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/bbans/:bban/iban",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "bbans",
+                                ":bban",
+                                "iban"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bban"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:06:53.000Z",
+                          "updatedAt": "2026-07-28T03:06:53.000Z",
+                          "uid": "35240-437b63bc-4625-47de-809b-41304594f068"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:06:53.000Z",
+                      "updatedAt": "2026-07-28T03:06:53.000Z",
+                      "uid": "35240-b1bd9ac8-0534-4e2d-8236-6bb4af162474"
+                    }
+                  ],
+                  "id": "95c0a2c4-8349-434a-8ad1-8109e1981e81",
+                  "createdAt": "2026-07-28T03:06:53.000Z",
+                  "updatedAt": "2026-07-28T03:06:53.000Z",
+                  "uid": "35240-95c0a2c4-8349-434a-8ad1-8109e1981e81"
+                }
+              ],
+              "id": "92c167f1-fc79-452b-a07f-ce36975691b1",
+              "createdAt": "2026-07-28T03:06:53.000Z",
+              "updatedAt": "2026-07-28T03:06:53.000Z",
+              "uid": "35240-92c167f1-fc79-452b-a07f-ce36975691b1"
+            }
+          ],
+          "id": "cf2c3289-27b4-4df9-bde7-c2c359ce2aa2",
+          "createdAt": "2026-07-28T03:06:53.000Z",
+          "updatedAt": "2026-07-28T03:06:53.000Z",
+          "uid": "35240-cf2c3289-27b4-4df9-bde7-c2c359ce2aa2"
+        }
+      ],
+      "id": "6b136bf4-9d0c-40e8-8d7e-3f0edc4f9b10",
+      "createdAt": "2026-07-28T03:06:53.000Z",
+      "updatedAt": "2026-07-28T03:06:53.000Z",
+      "uid": "35240-6b136bf4-9d0c-40e8-8d7e-3f0edc4f9b10"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "urn:swiftref:external urn:swiftref:internal",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.swift.com/oauth2/v1/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "password_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.swift.com/swiftrefdata"
+    }
+  ]
+}
