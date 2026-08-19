@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef Account Numbers Country Codes API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Country Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Country Code Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/country_codes/:country_code",
+            "params": [
+              {
+                "name": "country_code",
+                "value": "DE",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code"
+              }
+            ]
+          },
+          "docs": "Returns details for an ISO 3166-1 alpha-2 country code including country name and IBAN structure."
+        },
+        {
+          "info": {
+            "name": "Validate Country Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/country_codes/:country_code/validity",
+            "params": [
+              {
+                "name": "country_code",
+                "value": "DE",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code"
+              }
+            ]
+          },
+          "docs": "Checks whether a country code is a valid ISO 3166-1 alpha-2 code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

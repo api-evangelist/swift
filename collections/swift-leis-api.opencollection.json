@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef Account Numbers LEIs API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LEIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get LEI Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/leis/:lei",
+            "params": [
+              {
+                "name": "lei",
+                "value": "529900T8BM49AURSDO55",
+                "type": "path",
+                "description": "20-character Legal Entity Identifier"
+              }
+            ]
+          },
+          "docs": "Returns details for a Legal Entity Identifier (LEI) including entity name, legal address, and registration status."
+        },
+        {
+          "info": {
+            "name": "Validate LEI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/leis/:lei/validity",
+            "params": [
+              {
+                "name": "lei",
+                "value": "529900T8BM49AURSDO55",
+                "type": "path",
+                "description": "20-character Legal Entity Identifier"
+              }
+            ]
+          },
+          "docs": "Checks whether a Legal Entity Identifier is valid and active in the Global LEI System (GLEIF)."
+        },
+        {
+          "info": {
+            "name": "Get BIC for LEI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/leis/:lei/bic",
+            "params": [
+              {
+                "name": "lei",
+                "value": "529900T8BM49AURSDO55",
+                "type": "path",
+                "description": "20-character Legal Entity Identifier"
+              }
+            ]
+          },
+          "docs": "Returns the BIC associated with a Legal Entity Identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

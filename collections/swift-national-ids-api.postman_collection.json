@@ -1,0 +1,400 @@
+{
+  "item": [
+    {
+      "id": "bc7e4663-58eb-4067-bbed-6ba47dca38a1",
+      "name": "National IDs",
+      "description": {
+        "content": "National ID lookup and BIC resolution",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7497545-ef90-4633-8ae7-999d102c0212",
+          "name": "Get National ID Details",
+          "request": {
+            "name": "Get National ID Details",
+            "description": {
+              "content": "Returns details for a National ID (clearing code, routing number) used for domestic payment routing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "national_ids",
+                ":national_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "national_id",
+                  "description": "(Required) National ID clearing code or routing number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7fe6f767-c66c-4229-bc0e-9f3109a8fd62",
+              "name": "National ID details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "national_ids",
+                    ":national_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "national_id",
+                      "description": "(Required) National ID clearing code or routing number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nationalId\": \"string\",\n  \"type\": \"string\",\n  \"bankName\": \"string\",\n  \"countryCode\": \"string\",\n  \"city\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ef4bc76-8fb9-4f8c-bfcc-71bbd1c1e982",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "national_ids",
+                    ":national_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "national_id",
+                      "description": "(Required) National ID clearing code or routing number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df75931a-8424-4a62-8f21-45ff92cae407",
+          "name": "Validate National ID",
+          "request": {
+            "name": "Validate National ID",
+            "description": {
+              "content": "Checks the validity of a National ID (clearing code or routing number).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "national_ids",
+                ":national_id",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "national_id",
+                  "description": "(Required) National ID clearing code or routing number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db687642-12f0-4dd4-b12d-df8dc0b0f089",
+              "name": "National ID validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "national_ids",
+                    ":national_id",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "national_id",
+                      "description": "(Required) National ID clearing code or routing number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b10f254-c324-4c8f-9d63-0410269521c0",
+          "name": "Get BICs for National ID",
+          "request": {
+            "name": "Get BICs for National ID",
+            "description": {
+              "content": "Returns the BIC(s) associated with a National ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "national_ids",
+                ":national_id",
+                "bics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "national_id",
+                  "description": "(Required) National ID clearing code or routing number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4c91436-3ad2-45b3-a07e-ba95311fc854",
+              "name": "BICs for the National ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "national_ids",
+                    ":national_id",
+                    "bics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "national_id",
+                      "description": "(Required) National ID clearing code or routing number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"bic\": \"string\",\n    \"institutionName\": \"string\",\n    \"countryCode\": \"string\",\n    \"city\": \"string\",\n    \"address\": \"string\",\n    \"status\": \"string\",\n    \"connectedToBIC\": false\n  },\n  {\n    \"bic\": \"string\",\n    \"institutionName\": \"string\",\n    \"countryCode\": \"string\",\n    \"city\": \"string\",\n    \"address\": \"string\",\n    \"status\": \"string\",\n    \"connectedToBIC\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.swift.com/swiftrefdata",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "urn:swiftref:external urn:swiftref:internal"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.swift.com/oauth2/v1/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "password_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "76561a9e-ab0c-47da-9bcb-fd994636ff2d",
+    "name": "SWIFT SwiftRef Account Numbers National IDs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.\n\nContact Support:\n Name: SWIFT Developer Support\n Email: developer-support@swift.com",
+      "type": "text/plain"
+    }
+  }
+}

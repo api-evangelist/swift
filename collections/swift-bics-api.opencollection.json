@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef Account Numbers BICs API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BICs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get BIC Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a BIC (Bank Identifier Code) including institution name, address, and connectivity status."
+        },
+        {
+          "info": {
+            "name": "Validate BIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/validity",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Checks the validity of a BIC code, confirming it is a registered and active BIC in the SWIFT network."
+        },
+        {
+          "info": {
+            "name": "Get LEI for BIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/lei",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Returns the Legal Entity Identifier (LEI) associated with a BIC."
+        },
+        {
+          "info": {
+            "name": "Get National IDs for BIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/national_ids",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Returns all National IDs associated with a BIC."
+        },
+        {
+          "info": {
+            "name": "Validate SEPA Reachability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/reachability",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Validates whether a BIC is reachable via SEPA (Single Euro Payments Area) credit transfer or direct debit schemes."
+        },
+        {
+          "info": {
+            "name": "Get SSIs for BIC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bics/:bic/ssis",
+            "params": [
+              {
+                "name": "bic",
+                "value": "DEUTDEDB",
+                "type": "path",
+                "description": "8 or 11 character BIC (Bank Identifier Code)"
+              }
+            ]
+          },
+          "docs": "Returns Standard Settlement Instructions (SSIs) associated with a BIC."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

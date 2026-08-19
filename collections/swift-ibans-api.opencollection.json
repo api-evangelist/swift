@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef Account Numbers IBANs API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IBANs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get IBAN Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/ibans/:iban",
+            "params": [
+              {
+                "name": "iban",
+                "value": "DE89370400440532013000",
+                "type": "path",
+                "description": "IBAN (International Bank Account Number) without spaces"
+              }
+            ]
+          },
+          "docs": "Returns details for an IBAN including the associated BIC, bank name, and account holder country."
+        },
+        {
+          "info": {
+            "name": "Validate IBAN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/ibans/:iban/validity",
+            "params": [
+              {
+                "name": "iban",
+                "value": "DE89370400440532013000",
+                "type": "path",
+                "description": "IBAN (International Bank Account Number) without spaces"
+              }
+            ]
+          },
+          "docs": "Validates an IBAN by checking its format, check digits, country code, and BBAN structure."
+        },
+        {
+          "info": {
+            "name": "Get BIC for IBAN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/ibans/:iban/bic",
+            "params": [
+              {
+                "name": "iban",
+                "value": "DE89370400440532013000",
+                "type": "path",
+                "description": "IBAN (International Bank Account Number) without spaces"
+              }
+            ]
+          },
+          "docs": "Returns the BIC associated with a given IBAN."
+        },
+        {
+          "info": {
+            "name": "Get BIC for IBAN National ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/iban_national_ids/:iban_national_id/bic",
+            "params": [
+              {
+                "name": "iban_national_id",
+                "value": "",
+                "type": "path",
+                "description": "IBAN national ID component"
+              }
+            ]
+          },
+          "docs": "Returns the BIC associated with an IBAN national ID component."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

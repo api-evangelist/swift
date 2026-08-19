@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef Account Numbers API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Numbers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate Account Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/account_numbers/:account_number/validity",
+            "params": [
+              {
+                "name": "account_number",
+                "value": "",
+                "type": "path",
+                "description": "Account number to validate"
+              }
+            ]
+          },
+          "docs": "Checks the validity of various account number formats including IBANs, checking account number format compliance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,661 @@
+{
+  "item": [
+    {
+      "id": "4c681305-5da3-4d3f-8ca4-56ed68a88475",
+      "name": "IBANs",
+      "description": {
+        "content": "IBAN (International Bank Account Number) lookup and validation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80a6cb56-f058-447f-8ebe-f003becf197a",
+          "name": "Get IBAN Details",
+          "request": {
+            "name": "Get IBAN Details",
+            "description": {
+              "content": "Returns details for an IBAN including the associated BIC, bank name, and account holder country.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ibans",
+                ":iban"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb5ed7f2-20b4-4257-90ed-6a14f08151fe",
+              "name": "IBAN details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"iban\": \"string\",\n  \"bic\": \"string\",\n  \"countryCode\": \"string\",\n  \"bankCode\": \"string\",\n  \"accountNumber\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc4c9a70-b2a6-4270-b2dc-c334318da658",
+              "name": "Bad request - invalid identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84744ea2-6091-446f-961c-581ebed2c583",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "676179fb-8771-4a32-80b7-839f311ebefd",
+          "name": "Validate IBAN",
+          "request": {
+            "name": "Validate IBAN",
+            "description": {
+              "content": "Validates an IBAN by checking its format, check digits, country code, and BBAN structure.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ibans",
+                ":iban",
+                "validity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18ab5c1e-cd49-4e12-b1c6-370812028467",
+              "name": "IBAN validity result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": false,\n  \"errorCode\": \"string\",\n  \"errorDescription\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae06ea5a-65f6-4df5-a2fd-e099bc288b19",
+              "name": "Bad request - invalid identifier format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban",
+                    "validity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a384d721-3e0e-4653-a356-3fba2f59ec72",
+          "name": "Get BIC for IBAN",
+          "request": {
+            "name": "Get BIC for IBAN",
+            "description": {
+              "content": "Returns the BIC associated with a given IBAN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ibans",
+                ":iban",
+                "bic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "165b2965-8a27-428a-8a9a-da76168e1ca1",
+              "name": "BIC for the IBAN",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban",
+                    "bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bic\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a167f65f-59a7-4156-9551-72e85f69bb49",
+              "name": "Identifier not found in reference data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ibans",
+                    ":iban",
+                    "bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) IBAN (International Bank Account Number) without spaces"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f2c5212-1f11-40a8-b6b6-ed1518fd6de3",
+          "name": "Get BIC for IBAN National ID",
+          "request": {
+            "name": "Get BIC for IBAN National ID",
+            "description": {
+              "content": "Returns the BIC associated with an IBAN national ID component.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "iban_national_ids",
+                ":iban_national_id",
+                "bic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban_national_id",
+                  "description": "(Required) IBAN national ID component"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc3e039f-73c1-47c4-a763-bf971933e2a5",
+              "name": "BIC for the IBAN national ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "iban_national_ids",
+                    ":iban_national_id",
+                    "bic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban_national_id",
+                      "description": "(Required) IBAN national ID component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bic\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.swift.com/swiftrefdata",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "urn:swiftref:external urn:swiftref:internal"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.swift.com/oauth2/v1/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "password_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fe285280-43b7-42f1-8f5a-ed936b7c72b4",
+    "name": "SWIFT SwiftRef Account Numbers IBANs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SWIFT SwiftRef API provides automated real-time lookup and validation of payments reference data. Supports validation and retrieval of BICs, IBANs, LEIs, National IDs, country codes, currency codes, and account numbers. Enables financial institutions, corporates, and PSPs to achieve greater straight-through processing rates by validating identifiers before payment execution. Data is updated daily from authoritative sources.\n\nContact Support:\n Name: SWIFT Developer Support\n Email: developer-support@swift.com",
+      "type": "text/plain"
+    }
+  }
+}

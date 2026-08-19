@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef Account Numbers National IDs API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "National IDs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get National ID Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/national_ids/:national_id",
+            "params": [
+              {
+                "name": "national_id",
+                "value": "",
+                "type": "path",
+                "description": "National ID clearing code or routing number"
+              }
+            ]
+          },
+          "docs": "Returns details for a National ID (clearing code, routing number) used for domestic payment routing."
+        },
+        {
+          "info": {
+            "name": "Validate National ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/national_ids/:national_id/validity",
+            "params": [
+              {
+                "name": "national_id",
+                "value": "",
+                "type": "path",
+                "description": "National ID clearing code or routing number"
+              }
+            ]
+          },
+          "docs": "Checks the validity of a National ID (clearing code or routing number)."
+        },
+        {
+          "info": {
+            "name": "Get BICs for National ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/national_ids/:national_id/bics",
+            "params": [
+              {
+                "name": "national_id",
+                "value": "",
+                "type": "path",
+                "description": "National ID clearing code or routing number"
+              }
+            ]
+          },
+          "docs": "Returns the BIC(s) associated with a National ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

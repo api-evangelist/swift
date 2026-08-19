@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef Account Numbers BBANs API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BBANs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get IBAN for BBAN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/bbans/:bban/iban",
+            "params": [
+              {
+                "name": "bban",
+                "value": "",
+                "type": "path",
+                "description": "Basic Bank Account Number"
+              }
+            ]
+          },
+          "docs": "Converts a Basic Bank Account Number (BBAN) to the corresponding IBAN format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

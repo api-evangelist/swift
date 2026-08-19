@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SWIFT SwiftRef Account Numbers Currency Codes API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "resource_owner_password_credentials",
+      "accessTokenUrl": "https://api.swift.com/oauth2/v1/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Currency Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Currency Code Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/currency_codes/:currency_code",
+            "params": [
+              {
+                "name": "currency_code",
+                "value": "EUR",
+                "type": "path",
+                "description": "ISO 4217 currency code"
+              }
+            ]
+          },
+          "docs": "Returns details for an ISO 4217 currency code including currency name and minor units."
+        },
+        {
+          "info": {
+            "name": "Validate Currency Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swift.com/swiftrefdata/v2/currency_codes/:currency_code/validity",
+            "params": [
+              {
+                "name": "currency_code",
+                "value": "EUR",
+                "type": "path",
+                "description": "ISO 4217 currency code"
+              }
+            ]
+          },
+          "docs": "Checks whether a currency code is a valid ISO 4217 code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
