@@ -201,6 +201,9 @@ apis:
   - type: Documentation
     url: https://developer.swift.com/apis/swiftref-api
 common:
+  - type: CapabilityMap
+    url: capabilities/swift-capability-edges.yml
+    name: SWIFT Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/swift/overview
   - type: AgenticAccess
