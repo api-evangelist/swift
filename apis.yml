@@ -164,18 +164,6 @@ apis:
     url: openapi/swift-currency-codes-api-openapi.yml
   - type: Documentation
     url: https://developer.swift.com/apis/swiftref-api
-- aid: swift:swift-ibans-api
-  name: SWIFT IBANs API
-  description: IBAN (International Bank Account Number) lookup and validation
-  humanURL: https://developer.swift.com/apis/swiftref-api
-  baseURL: https://api.swift.com/swiftrefdata
-  tags:
-  - IBANs
-  properties:
-  - type: OpenAPI
-    url: openapi/swift-ibans-api-openapi.yml
-  - type: Documentation
-    url: https://developer.swift.com/apis/swiftref-api
 - aid: swift:swift-leis-api
   name: SWIFT LEIs API
   description: LEI (Legal Entity Identifier) lookup and validation
@@ -198,6 +186,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/swift-national-ids-api-openapi.yml
+  - type: Documentation
+    url: https://developer.swift.com/apis/swiftref-api
+- aid: swift:swift-iba-ns-api
+  name: SWIFT IBA Ns API
+  description: IBAN (International Bank Account Number) lookup and validation
+  humanURL: https://developer.swift.com/apis/gpi-apis
+  baseURL: https://api.swift.com/swift-apigateway
+  tags:
+  - IBA Ns
+  properties:
+  - type: OpenAPI
+    url: openapi/swift-iba-ns-api-openapi.yml
   - type: Documentation
     url: https://developer.swift.com/apis/swiftref-api
 common:
