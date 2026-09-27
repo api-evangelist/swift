@@ -13,16 +13,13 @@
     "swift-leis-api-openapi.yml",
     "swift-national-ids-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "swift-swiftref-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "superseded outputs removed: swift-iba-ns-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 11 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "swift-account-numbers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -30,7 +27,7 @@
     "swift-bics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "swift-country-codes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "swift-currency-codes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "swift-iba-ns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "swift-ibans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "swift-leis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "swift-national-ids-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]

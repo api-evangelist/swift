@@ -72,6 +72,14 @@ paths:
                 items:
                   $ref: '#/components/schemas/BicDetails'
 components:
+  parameters:
+    nationalId:
+      name: national_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: National ID clearing code or routing number
   schemas:
     NationalIdDetails:
       type: object
@@ -122,14 +130,6 @@ components:
         connectedToBIC:
           type: boolean
           description: Whether the BIC is connected to SWIFT network
-  parameters:
-    nationalId:
-      name: national_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: National ID clearing code or routing number
   responses:
     NotFound:
       description: Identifier not found in reference data
