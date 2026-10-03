@@ -54,41 +54,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidityResult'
 components:
-  responses:
-    NotFound:
-      description: Identifier not found in reference data
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
-  parameters:
-    countryCode:
-      name: country_code
-      in: path
-      required: true
-      schema:
-        type: string
-        pattern: ^[A-Z]{2}$
-      description: ISO 3166-1 alpha-2 country code
-      example: DE
   schemas:
-    ValidityResult:
-      type: object
-      properties:
-        valid:
-          type: boolean
-          description: Whether the identifier is valid
-        errorCode:
-          type: string
-          description: Error code if invalid
-        errorDescription:
-          type: string
-          description: Human-readable description of validation failure
     CountryCodeDetails:
       type: object
       properties:
@@ -104,6 +70,40 @@ components:
         ibanStructure:
           type: string
           description: IBAN structure definition
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
+  parameters:
+    countryCode:
+      name: country_code
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Z]{2}$
+      description: ISO 3166-1 alpha-2 country code
+      example: DE
+  responses:
+    NotFound:
+      description: Identifier not found in reference data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
   securitySchemes:
     OAuth2:
       type: oauth2

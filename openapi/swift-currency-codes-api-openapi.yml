@@ -54,6 +54,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidityResult'
 components:
+  schemas:
+    CurrencyCodeDetails:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          description: ISO 4217 currency code
+        currencyName:
+          type: string
+          description: Currency name
+        minorUnits:
+          type: integer
+          description: Number of decimal places (minor currency units)
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
   responses:
     NotFound:
       description: Identifier not found in reference data
@@ -76,31 +101,6 @@ components:
         pattern: ^[A-Z]{3}$
       description: ISO 4217 currency code
       example: EUR
-  schemas:
-    ValidityResult:
-      type: object
-      properties:
-        valid:
-          type: boolean
-          description: Whether the identifier is valid
-        errorCode:
-          type: string
-          description: Error code if invalid
-        errorDescription:
-          type: string
-          description: Human-readable description of validation failure
-    CurrencyCodeDetails:
-      type: object
-      properties:
-        currencyCode:
-          type: string
-          description: ISO 4217 currency code
-        currencyName:
-          type: string
-          description: Currency name
-        minorUnits:
-          type: integer
-          description: Number of decimal places (minor currency units)
   securitySchemes:
     OAuth2:
       type: oauth2
