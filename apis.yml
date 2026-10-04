@@ -33,7 +33,6 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/swift.png
 tags:
-  - Swift
   - Banking
   - Cross-Border Payments
   - Financial Messaging
@@ -41,8 +40,8 @@ tags:
   - GPI
   - ISO 20022
   - Payments
+  - SWIFT
 tags_raw:
-  - Swift
   - Banking
   - Cross-Border Payments
   - Financial Messaging
@@ -51,6 +50,7 @@ tags_raw:
   - ISO 20022
   - Payments
   - Financial-Services
+  - SWIFT
 url: https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/apis.yml
 created: '2025-02-06'
 modified: '2026-05-19'
@@ -250,3 +250,5 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-tags-removed:
+- Swift
