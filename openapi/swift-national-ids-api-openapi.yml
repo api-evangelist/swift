@@ -73,19 +73,6 @@ paths:
                   $ref: '#/components/schemas/BicDetails'
 components:
   schemas:
-    NationalIdDetails:
-      type: object
-      properties:
-        nationalId:
-          type: string
-        type:
-          type: string
-        bankName:
-          type: string
-        countryCode:
-          type: string
-        city:
-          type: string
     BicDetails:
       type: object
       properties:
@@ -110,6 +97,19 @@ components:
         connectedToBIC:
           type: boolean
           description: Whether the BIC is connected to SWIFT network
+    NationalIdDetails:
+      type: object
+      properties:
+        nationalId:
+          type: string
+        type:
+          type: string
+        bankName:
+          type: string
+        countryCode:
+          type: string
+        city:
+          type: string
     ValidityResult:
       type: object
       properties:
@@ -122,14 +122,6 @@ components:
         errorDescription:
           type: string
           description: Human-readable description of validation failure
-  parameters:
-    nationalId:
-      name: national_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: National ID clearing code or routing number
   responses:
     NotFound:
       description: Identifier not found in reference data
@@ -142,6 +134,14 @@ components:
                 type: string
               message:
                 type: string
+  parameters:
+    nationalId:
+      name: national_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: National ID clearing code or routing number
   securitySchemes:
     OAuth2:
       type: oauth2

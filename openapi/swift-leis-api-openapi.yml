@@ -73,6 +73,18 @@ paths:
                   bic:
                     type: string
 components:
+  responses:
+    NotFound:
+      description: Identifier not found in reference data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
   schemas:
     ValidityResult:
       type: object
@@ -111,18 +123,6 @@ components:
         pattern: ^[A-Z0-9]{20}$
       description: 20-character Legal Entity Identifier
       example: 529900T8BM49AURSDO55
-  responses:
-    NotFound:
-      description: Identifier not found in reference data
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
   securitySchemes:
     OAuth2:
       type: oauth2

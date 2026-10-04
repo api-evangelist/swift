@@ -143,18 +143,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ReachabilityResult:
+    NationalId:
       type: object
       properties:
-        sepaCtReachable:
-          type: boolean
-          description: Whether BIC is reachable for SEPA Credit Transfer
-        sepaDirectDebitReachable:
-          type: boolean
-          description: Whether BIC is reachable for SEPA Direct Debit
-        sepaInstantReachable:
-          type: boolean
-          description: Whether BIC is reachable for SEPA Instant payments
+        nationalId:
+          type: string
+          description: National clearing code
+        type:
+          type: string
+          description: Type of national ID (ABA, CHIPS, SORT, etc.)
+        countryCode:
+          type: string
+          description: Country code
     BicDetails:
       type: object
       properties:
@@ -179,18 +179,6 @@ components:
         connectedToBIC:
           type: boolean
           description: Whether the BIC is connected to SWIFT network
-    NationalId:
-      type: object
-      properties:
-        nationalId:
-          type: string
-          description: National clearing code
-        type:
-          type: string
-          description: Type of national ID (ABA, CHIPS, SORT, etc.)
-        countryCode:
-          type: string
-          description: Country code
     ValidityResult:
       type: object
       properties:
@@ -203,9 +191,21 @@ components:
         errorDescription:
           type: string
           description: Human-readable description of validation failure
+    ReachabilityResult:
+      type: object
+      properties:
+        sepaCtReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Credit Transfer
+        sepaDirectDebitReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Direct Debit
+        sepaInstantReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Instant payments
   responses:
-    NotFound:
-      description: Identifier not found in reference data
+    Unauthorized:
+      description: Unauthorized - invalid or expired OAuth token
       content:
         application/json:
           schema:
@@ -215,8 +215,8 @@ components:
                 type: string
               message:
                 type: string
-    Unauthorized:
-      description: Unauthorized - invalid or expired OAuth token
+    NotFound:
+      description: Identifier not found in reference data
       content:
         application/json:
           schema:
