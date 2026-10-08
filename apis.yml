@@ -204,6 +204,12 @@ apis:
   - type: Documentation
     url: https://developer.swift.com/apis/swiftref-api
 common:
+  - type: Plans
+    url: plans/swift-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/swift-rate-limits.yml
+  - type: FinOps
+    url: finops/swift-finops.yml
   - type: CapabilityMap
     url: capabilities/swift-capability-edges.yml
     name: SWIFT Business Capability Map
