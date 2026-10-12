@@ -43,21 +43,6 @@ edges:
     property: components.schemas.FiatPaymentType
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
-- partner_name: lead-bank
-  partner: lead-bank
-  partner_match: domain
-  type: contract
-  channel: partner-built
-  relationship: rail
-  direction: partner-built
-  evidence: https://github.com/api-evangelist/lead-bank/blob/main/openapi/lead-bank-blockchain-payment-api-openapi.yml
-  contract_reference:
-    repo: lead-bank
-    spec_file: lead-bank-blockchain-payment-api-openapi.yml
-    value: swift
-    property: schemas.BlockchainPaymentPaymentRail
-    detected_by: detect-payment-method-edges.py
-    detected: '2026-10-12'
 - partner_name: lorum
   partner: lorum
   partner_match: domain
@@ -65,10 +50,10 @@ edges:
   channel: partner-built
   relationship: network
   direction: partner-built
-  evidence: https://github.com/api-evangelist/lorum/blob/main/openapi/lorum-transactions-api-openapi.yml
+  evidence: https://github.com/api-evangelist/lorum/blob/main/openapi/lorum-accounts-api-openapi.yml
   contract_reference:
     repo: lorum
-    spec_file: lorum-transactions-api-openapi.yml
+    spec_file: lorum-accounts-api-openapi.yml
     value: swift
     property: components.schemas.PaymentScheme
     detected_by: detect-payment-method-edges.py
@@ -86,51 +71,6 @@ edges:
     spec_file: revolut-counterparties-api-openapi.yml
     value: swift
     property: schemas.CounterpartyAccount.route
-    detected_by: detect-payment-method-edges.py
-    detected: '2026-10-12'
-- partner_name: stripe
-  partner: stripe
-  partner_match: domain
-  type: contract
-  channel: partner-built
-  relationship: banking-partner
-  direction: partner-built
-  evidence: https://github.com/api-evangelist/stripe/blob/main/openapi/stripe-checkout-api-openapi.yml
-  contract_reference:
-    repo: stripe
-    spec_file: stripe-checkout-api-openapi.yml
-    value: swift
-    property: customer_balance.bank_transfer.requested_address_types
-    detected_by: detect-payment-method-edges.py
-    detected: '2026-10-12'
-- partner_name: toqio
-  partner: toqio
-  partner_match: domain
-  type: contract
-  channel: partner-built
-  relationship: payment-method
-  direction: partner-built
-  evidence: https://github.com/api-evangelist/toqio/blob/main/openapi/toqio-transaction-api-openapi.yml
-  contract_reference:
-    repo: toqio
-    spec_file: toqio-transaction-api-openapi.yml
-    value: swift
-    property: schemas.FetchAllTransactionsInSpecifiedTimeRangeResponse.payment_method
-    detected_by: detect-payment-method-edges.py
-    detected: '2026-10-12'
-- partner_name: worldpay
-  partner: worldpay
-  partner_match: domain
-  type: contract
-  channel: partner-built
-  relationship: banking-partner
-  direction: partner-built
-  evidence: https://github.com/api-evangelist/worldpay/blob/main/openapi/worldpay-card-payments-api-openapi.yml
-  contract_reference:
-    repo: worldpay
-    spec_file: worldpay-card-payments-api-openapi.yml
-    value: swift
-    property: schemas.fundsTransfer_bankAccount.identifierType
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
 templates: []

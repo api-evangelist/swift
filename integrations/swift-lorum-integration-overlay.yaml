@@ -4,7 +4,7 @@ overlay: 1.0.0
 info:
   title: swift as a network in lorum's contract
   version: 1.0.0
-extends: https://raw.githubusercontent.com/api-evangelist/lorum/refs/heads/main/openapi/lorum-transactions-api-openapi.yml
+extends: https://raw.githubusercontent.com/api-evangelist/lorum/refs/heads/main/openapi/lorum-accounts-api-openapi.yml
 actions:
 - target: $.components.schemas.PaymentScheme
   update:
@@ -13,7 +13,7 @@ actions:
         swift:
           provider: swift
           relationship: network
-          evidence: https://github.com/api-evangelist/lorum/blob/main/openapi/lorum-transactions-api-openapi.yml
+          evidence: https://github.com/api-evangelist/lorum/blob/main/openapi/lorum-accounts-api-openapi.yml
       method: derived
       generated: '2026-10-12'
       generator: build-integration-preconfigs.py

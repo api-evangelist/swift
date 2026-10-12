@@ -39,36 +39,18 @@
     detected: '2026-10-12'
   status: not-a-workflow
   arazzo: null
-- slug: swift-lead-bank
-  label: lead-bank
-  partner: lead-bank
-  partner_name: lead-bank
-  type: contract
-  channel: partner-built
-  evidence: https://github.com/api-evangelist/lead-bank/blob/main/openapi/lead-bank-blockchain-payment-api-openapi.yml
-  source: edge
-  relationship: rail
-  contract_reference:
-    repo: lead-bank
-    spec_file: lead-bank-blockchain-payment-api-openapi.yml
-    value: swift
-    property: schemas.BlockchainPaymentPaymentRail
-    detected_by: detect-payment-method-edges.py
-    detected: '2026-10-12'
-  status: not-a-workflow
-  arazzo: null
 - slug: swift-lorum
   label: lorum
   partner: lorum
   partner_name: lorum
   type: contract
   channel: partner-built
-  evidence: https://github.com/api-evangelist/lorum/blob/main/openapi/lorum-transactions-api-openapi.yml
+  evidence: https://github.com/api-evangelist/lorum/blob/main/openapi/lorum-accounts-api-openapi.yml
   source: edge
   relationship: network
   contract_reference:
     repo: lorum
-    spec_file: lorum-transactions-api-openapi.yml
+    spec_file: lorum-accounts-api-openapi.yml
     value: swift
     property: components.schemas.PaymentScheme
     detected_by: detect-payment-method-edges.py
@@ -93,57 +75,3 @@
     detected: '2026-10-12'
   arazzo: swift-revolut-preconfig.yml
   status: arazzo
-- slug: swift-stripe
-  label: stripe
-  partner: stripe
-  partner_name: stripe
-  type: contract
-  channel: partner-built
-  evidence: https://github.com/api-evangelist/stripe/blob/main/openapi/stripe-checkout-api-openapi.yml
-  source: edge
-  relationship: banking-partner
-  contract_reference:
-    repo: stripe
-    spec_file: stripe-checkout-api-openapi.yml
-    value: swift
-    property: customer_balance.bank_transfer.requested_address_types
-    detected_by: detect-payment-method-edges.py
-    detected: '2026-10-12'
-  arazzo: swift-stripe-preconfig.yml
-  status: arazzo
-- slug: swift-toqio
-  label: toqio
-  partner: toqio
-  partner_name: toqio
-  type: contract
-  channel: partner-built
-  evidence: https://github.com/api-evangelist/toqio/blob/main/openapi/toqio-transaction-api-openapi.yml
-  source: edge
-  relationship: payment-method
-  contract_reference:
-    repo: toqio
-    spec_file: toqio-transaction-api-openapi.yml
-    value: swift
-    property: schemas.FetchAllTransactionsInSpecifiedTimeRangeResponse.payment_method
-    detected_by: detect-payment-method-edges.py
-    detected: '2026-10-12'
-  status: not-a-workflow
-  arazzo: null
-- slug: swift-worldpay
-  label: worldpay
-  partner: worldpay
-  partner_name: worldpay
-  type: contract
-  channel: partner-built
-  evidence: https://github.com/api-evangelist/worldpay/blob/main/openapi/worldpay-card-payments-api-openapi.yml
-  source: edge
-  relationship: banking-partner
-  contract_reference:
-    repo: worldpay
-    spec_file: worldpay-card-payments-api-openapi.yml
-    value: swift
-    property: schemas.fundsTransfer_bankAccount.identifierType
-    detected_by: detect-payment-method-edges.py
-    detected: '2026-10-12'
-  status: not-a-workflow
-  arazzo: null
