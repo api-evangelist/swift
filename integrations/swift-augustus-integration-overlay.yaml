@@ -1,0 +1,30 @@
+# DERIVED by build-integration-preconfigs.py (roadmap#949). Overlay on the PARTNER's contract:
+# where augustus's enum names swift, and what that value is.
+overlay: 1.0.0
+info:
+  title: swift as a rail in augustus's contract
+  version: 1.0.0
+extends: https://raw.githubusercontent.com/api-evangelist/augustus/refs/heads/main/openapi/augustus-deposits-api-openapi.yml
+actions:
+- target: $.components.schemas.ListDepositsResponseDto.properties.data.items.properties.rail
+  update:
+    x-apievangelist-integration:
+      values:
+        swift:
+          provider: swift
+          relationship: rail
+          evidence: https://github.com/api-evangelist/augustus/blob/main/openapi/augustus-deposits-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py
+- target: $.components.schemas.DepositResourceDto.properties.rail
+  update:
+    x-apievangelist-integration:
+      values:
+        swift:
+          provider: swift
+          relationship: rail
+          evidence: https://github.com/api-evangelist/augustus/blob/main/openapi/augustus-deposits-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py

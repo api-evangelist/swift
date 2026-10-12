@@ -1,0 +1,47 @@
+arazzo: 1.0.1
+info:
+  title: 'swift through stripe: PostCheckoutSessions preconfigured with swift'
+  summary: Calls stripe's PostCheckoutSessions with `swift` preset, the way swift is used inside stripe.
+  description: 'A PRECONFIGURATION, not an orchestration: swift is a banking-partner inside stripe, so the integration
+    is stripe''s own operation with swift''s enum value set. Derived from stripe''s contract (stripe-checkout-api-openapi.yml);
+    required properties are inputs.'
+  version: 1.0.0
+x-integration:
+  partner: stripe
+  relationship: banking-partner
+  preconfig: true
+  edge_evidence: https://github.com/api-evangelist/stripe/blob/main/openapi/stripe-checkout-api-openapi.yml
+  edge_type: contract
+  preset:
+    payment_method_options.customer_balance.bank_transfer.requested_address_types: swift
+  method: derived
+  generated: '2026-10-12'
+  generator: build-integration-preconfigs.py
+sourceDescriptions:
+- name: stripeCheckoutApiOpenapi
+  url: https://raw.githubusercontent.com/api-evangelist/stripe/refs/heads/main/openapi/stripe-checkout-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: swift-via-stripe-postcheckoutsessions
+  summary: PostCheckoutSessions with swift preset
+  inputs:
+    type: object
+    required: []
+    properties: {}
+  steps:
+  - stepId: call-with-preset
+    operationId: $sourceDescriptions.stripeCheckoutApiOpenapi.PostCheckoutSessions
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        payment_method_options:
+          customer_balance:
+            bank_transfer:
+              requested_address_types:
+              - swift
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      id: $response.body#/id
+  outputs:
+    id: $steps.call-with-preset.outputs.id

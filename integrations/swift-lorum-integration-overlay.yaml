@@ -1,0 +1,19 @@
+# DERIVED by build-integration-preconfigs.py (roadmap#949). Overlay on the PARTNER's contract:
+# where lorum's enum names swift, and what that value is.
+overlay: 1.0.0
+info:
+  title: swift as a network in lorum's contract
+  version: 1.0.0
+extends: https://raw.githubusercontent.com/api-evangelist/lorum/refs/heads/main/openapi/lorum-transactions-api-openapi.yml
+actions:
+- target: $.components.schemas.PaymentScheme
+  update:
+    x-apievangelist-integration:
+      values:
+        swift:
+          provider: swift
+          relationship: network
+          evidence: https://github.com/api-evangelist/lorum/blob/main/openapi/lorum-transactions-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py

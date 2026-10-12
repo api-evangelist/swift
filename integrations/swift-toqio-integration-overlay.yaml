@@ -1,0 +1,19 @@
+# DERIVED by build-integration-preconfigs.py (roadmap#949). Overlay on the PARTNER's contract:
+# where toqio's enum names swift, and what that value is.
+overlay: 1.0.0
+info:
+  title: swift as a payment-method in toqio's contract
+  version: 1.0.0
+extends: https://raw.githubusercontent.com/api-evangelist/toqio/refs/heads/main/openapi/toqio-transaction-api-openapi.yml
+actions:
+- target: $.components.schemas.FetchAllTransactionsInSpecifiedTimeRangeResponse.properties.payment_method
+  update:
+    x-apievangelist-integration:
+      values:
+        swift:
+          provider: swift
+          relationship: payment-method
+          evidence: https://github.com/api-evangelist/toqio/blob/main/openapi/toqio-transaction-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py
