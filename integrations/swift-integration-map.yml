@@ -1,0 +1,56 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: swift
+workflows:
+- file: swift-revolut-preconfig.yml
+  title: 'swift through revolut: addCounterparty preconfigured with swift'
+  partner: revolut
+  template: null
+  repos:
+  - revolut
+  steps:
+  - step: call-with-preset
+    repo: revolut
+    spec_file: revolut-counterparties-api-openapi.yml
+    operationId: addCounterparty
+    tag: Counterparties
+    capability_id: BC-1340.10
+    capability: Payment Initiation Management
+    capability_l1: BC-1340
+    intent: null
+    effect: null
+    unmapped: null
+  connects:
+    revolut:
+      capabilities:
+      - BC-1340.10
+      tags:
+      - Counterparties
+  intents: []
+- file: swift-stripe-preconfig.yml
+  title: 'swift through stripe: PostCheckoutSessions preconfigured with swift'
+  partner: stripe
+  template: null
+  repos:
+  - stripe
+  steps:
+  - step: call-with-preset
+    repo: stripe
+    spec_file: stripe-checkout-api-openapi.yml
+    operationId: PostCheckoutSessions
+    tag: Checkout
+    capability_id: BC-1340.10
+    capability: Payment Initiation Management
+    capability_l1: BC-1340
+    intent: Create a Checkout Session
+    effect: write
+    unmapped: null
+  connects:
+    stripe:
+      capabilities:
+      - BC-1340.10
+      tags:
+      - Checkout
+  intents:
+  - Create a Checkout Session
