@@ -142,67 +142,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    NationalId:
-      type: object
-      properties:
-        nationalId:
-          type: string
-          description: National clearing code
-        type:
-          type: string
-          description: Type of national ID (ABA, CHIPS, SORT, etc.)
-        countryCode:
-          type: string
-          description: Country code
-    BicDetails:
-      type: object
-      properties:
-        bic:
-          type: string
-          description: Bank Identifier Code
-        institutionName:
-          type: string
-          description: Name of the financial institution
-        countryCode:
-          type: string
-          description: ISO 3166-1 country code
-        city:
-          type: string
-          description: City where the institution is located
-        address:
-          type: string
-          description: Institution address
-        status:
-          type: string
-          description: BIC status (active, passive, etc.)
-        connectedToBIC:
-          type: boolean
-          description: Whether the BIC is connected to SWIFT network
-    ValidityResult:
-      type: object
-      properties:
-        valid:
-          type: boolean
-          description: Whether the identifier is valid
-        errorCode:
-          type: string
-          description: Error code if invalid
-        errorDescription:
-          type: string
-          description: Human-readable description of validation failure
-    ReachabilityResult:
-      type: object
-      properties:
-        sepaCtReachable:
-          type: boolean
-          description: Whether BIC is reachable for SEPA Credit Transfer
-        sepaDirectDebitReachable:
-          type: boolean
-          description: Whether BIC is reachable for SEPA Direct Debit
-        sepaInstantReachable:
-          type: boolean
-          description: Whether BIC is reachable for SEPA Instant payments
   responses:
     Unauthorized:
       description: Unauthorized - invalid or expired OAuth token
@@ -237,6 +176,67 @@ components:
                 type: string
               message:
                 type: string
+  schemas:
+    ReachabilityResult:
+      type: object
+      properties:
+        sepaCtReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Credit Transfer
+        sepaDirectDebitReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Direct Debit
+        sepaInstantReachable:
+          type: boolean
+          description: Whether BIC is reachable for SEPA Instant payments
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
+    BicDetails:
+      type: object
+      properties:
+        bic:
+          type: string
+          description: Bank Identifier Code
+        institutionName:
+          type: string
+          description: Name of the financial institution
+        countryCode:
+          type: string
+          description: ISO 3166-1 country code
+        city:
+          type: string
+          description: City where the institution is located
+        address:
+          type: string
+          description: Institution address
+        status:
+          type: string
+          description: BIC status (active, passive, etc.)
+        connectedToBIC:
+          type: boolean
+          description: Whether the BIC is connected to SWIFT network
+    NationalId:
+      type: object
+      properties:
+        nationalId:
+          type: string
+          description: National clearing code
+        type:
+          type: string
+          description: Type of national ID (ABA, CHIPS, SORT, etc.)
+        countryCode:
+          type: string
+          description: Country code
   parameters:
     bic:
       name: bic

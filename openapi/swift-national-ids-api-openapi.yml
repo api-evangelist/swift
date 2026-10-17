@@ -72,7 +72,40 @@ paths:
                 items:
                   $ref: '#/components/schemas/BicDetails'
 components:
+  parameters:
+    nationalId:
+      name: national_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: National ID clearing code or routing number
   schemas:
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
+    NationalIdDetails:
+      type: object
+      properties:
+        nationalId:
+          type: string
+        type:
+          type: string
+        bankName:
+          type: string
+        countryCode:
+          type: string
+        city:
+          type: string
     BicDetails:
       type: object
       properties:
@@ -97,31 +130,6 @@ components:
         connectedToBIC:
           type: boolean
           description: Whether the BIC is connected to SWIFT network
-    NationalIdDetails:
-      type: object
-      properties:
-        nationalId:
-          type: string
-        type:
-          type: string
-        bankName:
-          type: string
-        countryCode:
-          type: string
-        city:
-          type: string
-    ValidityResult:
-      type: object
-      properties:
-        valid:
-          type: boolean
-          description: Whether the identifier is valid
-        errorCode:
-          type: string
-          description: Error code if invalid
-        errorDescription:
-          type: string
-          description: Human-readable description of validation failure
   responses:
     NotFound:
       description: Identifier not found in reference data
@@ -134,14 +142,6 @@ components:
                 type: string
               message:
                 type: string
-  parameters:
-    nationalId:
-      name: national_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: National ID clearing code or routing number
   securitySchemes:
     OAuth2:
       type: oauth2

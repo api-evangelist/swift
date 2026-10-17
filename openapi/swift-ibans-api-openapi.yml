@@ -105,6 +105,18 @@ paths:
                     type: string
 components:
   schemas:
+    ValidityResult:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the identifier is valid
+        errorCode:
+          type: string
+          description: Error code if invalid
+        errorDescription:
+          type: string
+          description: Human-readable description of validation failure
     IbanDetails:
       type: object
       properties:
@@ -123,18 +135,6 @@ components:
         accountNumber:
           type: string
           description: Account number extracted from IBAN
-    ValidityResult:
-      type: object
-      properties:
-        valid:
-          type: boolean
-          description: Whether the identifier is valid
-        errorCode:
-          type: string
-          description: Error code if invalid
-        errorDescription:
-          type: string
-          description: Human-readable description of validation failure
   responses:
     NotFound:
       description: Identifier not found in reference data
