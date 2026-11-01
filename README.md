@@ -1,4 +1,4 @@
-# SWIFT (swift)
+# SWIFT
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,133 +66,188 @@
 
 SWIFT (Society for Worldwide Interbank Financial Telecommunication) is a global member-owned cooperative providing secure financial messaging services and reference data to financial institutions worldwide. SWIFT offers REST APIs for cross-border payment tracking (GPI), payment pre-validation, reference data lookup (SwiftRef), transaction screening, instant payments, and more. APIs use OAuth 2.0 authentication and are documented using OpenAPI 3.0.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/apis.yml)
+**Areas:** Banking · Cross-Border Payments · Financial Messaging · Financial Services · GPI · ISO 20022 · Payments · SWIFT
 
-## Scope
+## SWIFT on APIs.io
 
-- **Type:** Index
+Everything profiled for SWIFT is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/swift/](https://apis.io/providers/swift/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (11)
 
-- Banking
-- Cross-Border Payments
-- Financial Messaging
-- Financial Services
-- GPI
-- ISO 20022
-- Payments
+- [SWIFT GPI API](https://apis.io/apis/swift/swift-gpi-api/) — The SWIFT GPI (Global Payments Innovation) API enables financial institutions to track cross-border payment transactions in real time, update payment…
+- [Payment Pre-validation API](https://apis.io/apis/swift/payment-pre-validation-api/) — The SWIFT Payment Pre-validation API allows financial institutions and PSPs to verify payment instruction data against reference data and counterparty…
+- [Transaction Screening API](https://apis.io/apis/swift/transaction-screening-api/) — The SWIFT Transaction Screening API enables financial institutions to submit transactions to the SWIFT Transaction Screening Service (TSS) for sanctions and…
+- [SWIFT Account Numbers API](https://apis.io/apis/swift/swift-account-numbers-api/) — Account number format validation
+- [SWIFT BBANs API](https://apis.io/apis/swift/swift-bbans-api/) — BBAN to IBAN conversion
+- [SWIFT BICs API](https://apis.io/apis/swift/swift-bics-api/) — BIC (Bank Identifier Code) lookup and validation
+- [SWIFT Country Codes API](https://apis.io/apis/swift/swift-country-codes-api/) — Country code lookup and validation
+- [SWIFT Currency Codes API](https://apis.io/apis/swift/swift-currency-codes-api/) — Currency code lookup and validation
+- [SWIFT LEIs API](https://apis.io/apis/swift/swift-leis-api/) — LEI (Legal Entity Identifier) lookup and validation
+- [SWIFT National IDs API](https://apis.io/apis/swift/swift-national-ids-api/) — National ID lookup and BIC resolution
+- [SWIFT IBA Ns API](https://apis.io/apis/swift/swift-ibans-api/) — IBAN (International Bank Account Number) lookup and validation
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-06
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### SwiftRef API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The SwiftRef API provides automated real-time lookup and validation of payments reference data including BICs, IBANs, LEIs, National IDs, country codes, and currency codes. Enables straight-through processing by validating financial identifiers before payment execution.
+- [Swift Agentic Access](https://apis.io/agentic-access/swift/swift-agentic-access/)
 
-- **Human URL:** [https://developer.swift.com/apis/swiftref-api](https://developer.swift.com/apis/swiftref-api)
-- **Base URL:** `https://api.swift.com/swiftrefdata`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- BIC Validation
-- Financial Reference Data
-- IBAN Validation
-- LEI Validation
-- Reference Data
-- SwiftRef
+- [SWIFT BIC](https://apis.io/schemas/swift/swift-bic/)
+- [SWIFT IBAN](https://apis.io/schemas/swift/swift-iban/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://developer.swift.com/apis/swiftref-api)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/swift/refs/heads/main/openapi/swift-swiftref-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/swift-swiftref-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swift-swiftref-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### SWIFT GPI API
+- [Swift Bic Structure](https://apis.io/json-structure/swift/swift-bic-structure/)
 
-The SWIFT GPI (Global Payments Innovation) API enables financial institutions to track cross-border payment transactions in real time, update payment statuses, and manage stop-and-recall requests. Uses Unique End-to-End Transaction Reference (UETR) for tracking. Requires OAuth 2.0 authentication via JWT-Bearer grant type (RFC 7523).
+#### JSON-LD (1)
 
-- **Human URL:** [https://developer.swift.com/apis/gpi-apis](https://developer.swift.com/apis/gpi-apis)
-- **Base URL:** `https://api.swift.com/swift-apigateway`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Swift Context](https://apis.io/jsonld/swift/swift-context/)
 
-- Cross-Border Payments
-- GPI
-- ISO 20022
-- Payment Tracking
-- Payments
-- UETR
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://developer.swift.com/apis/gpi-apis)
-- [Postman Collection](collections/swift-swiftref-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swift-swiftref-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [SWIFT Vocabulary](https://apis.io/vocabularies/swift/swift-vocabulary/)
 
-### Payment Pre-validation API
+#### Examples (2)
 
-The SWIFT Payment Pre-validation API allows financial institutions and PSPs to verify payment instruction data against reference data and counterparty information before executing a payment. Checks account numbers, country codes, routing information, and beneficiary account validity to reduce failed payments.
+Example requests and responses.
 
-- **Human URL:** [https://developer.swift.com/apis/payment-pre-validation-api](https://developer.swift.com/apis/payment-pre-validation-api)
+- [Swift Get Bic Details Example](https://apis.io/examples/swift/swift-get-bic-details-example/)
+- [Swift Validate Iban Example](https://apis.io/examples/swift/swift-validate-iban-example/)
 
-#### Tags
+#### Collections (17)
 
-- Compliance
-- Payment Pre-validation
-- Payments
-- Risk Management
-- Straight-Through Processing
+Postman and Open Collection request collections.
 
-#### Properties
+- [SWIFT SwiftRef Account Numbers API](https://apis.io/collections/swift/open-swift-account-numbers-api/)
+- [SWIFT SwiftRef Account Numbers BBANs API](https://apis.io/collections/swift/open-swift-bbans-api/)
+- [SWIFT SwiftRef Account Numbers BICs API](https://apis.io/collections/swift/open-swift-bics-api/)
+- [SWIFT SwiftRef Account Numbers Country Codes API](https://apis.io/collections/swift/open-swift-country-codes-api/)
+- [SWIFT SwiftRef Account Numbers Currency Codes API](https://apis.io/collections/swift/open-swift-currency-codes-api/)
+- [SWIFT SwiftRef Account Numbers IBANs API](https://apis.io/collections/swift/open-swift-ibans-api/)
+- [SWIFT SwiftRef Account Numbers LEIs API](https://apis.io/collections/swift/open-swift-leis-api/)
+- [SWIFT SwiftRef Account Numbers National IDs API](https://apis.io/collections/swift/open-swift-national-ids-api/)
+- [SWIFT SwiftRef API](https://apis.io/collections/swift/open-swift-swiftref-api/)
+- [SWIFT SwiftRef Account Numbers API](https://apis.io/collections/swift/postman-swift-account-numbers-api/)
+- [SWIFT SwiftRef Account Numbers BBANs API](https://apis.io/collections/swift/postman-swift-bbans-api/)
+- [SWIFT SwiftRef Account Numbers BICs API](https://apis.io/collections/swift/postman-swift-bics-api/)
+- [SWIFT SwiftRef Account Numbers Country Codes API](https://apis.io/collections/swift/postman-swift-country-codes-api/)
+- [SWIFT SwiftRef Account Numbers Currency Codes API](https://apis.io/collections/swift/postman-swift-currency-codes-api/)
+- [SWIFT SwiftRef Account Numbers IBANs API](https://apis.io/collections/swift/postman-swift-ibans-api/)
+- [SWIFT SwiftRef Account Numbers LEIs API](https://apis.io/collections/swift/postman-swift-leis-api/)
+- [SWIFT SwiftRef Account Numbers National IDs API](https://apis.io/collections/swift/postman-swift-national-ids-api/)
 
-- [Documentation](https://developer.swift.com/apis/payment-pre-validation-api)
-- [Product Page](https://www.swift.com/products/payment-pre-validation)
-- [Postman Collection](collections/swift-swiftref-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swift-swiftref-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (2)
 
-### Transaction Screening API
+Spectral rulesets for the provider's contracts.
 
-The SWIFT Transaction Screening API enables financial institutions to submit transactions to the SWIFT Transaction Screening Service (TSS) for sanctions and compliance screening before processing. Returns screening results with match details.
+- [SWIFT — jsonschema rules](https://apis.io/rules/swift/swift-jsonschema-spectral-rules/)
+- [SWIFT API Rules](https://apis.io/rules/swift/swift-rules/)
 
-- **Human URL:** [https://developer.swift.com/](https://developer.swift.com/)
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- AML
-- Compliance
-- Payments
-- Sanctions Screening
-- Transaction Screening
+- [Swift Authentication](https://apis.io/security/swift/swift-authentication/)
+- [Swift Domain Security](https://apis.io/security/swift/swift-domain-security/)
 
-#### Properties
+#### OAuth scopes (1)
 
-- [Postman Collection](collections/swift-swiftref-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/swift-swiftref-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The permissions the API asks for.
 
-## Common Properties
+- [Swift Scopes](https://apis.io/scopes/swift/swift-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Swift Plans Pricing](https://apis.io/plans/swift/swift-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Swift Rate Limits](https://apis.io/rate-limits/swift/swift-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Swift Finops](https://apis.io/finops/swift/swift-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.swift.com)
-- [Developer Portal](https://developer.swift.com)
-- [A P I Documentation](https://developer.swift.com/apis)
-- [API Reference](https://developer.swift.com/reference)
-- [GitHub Organization](https://github.com/swiftinc)
-- [Sandbox](https://sandbox.swift.com)
-- [Product Page](https://www.swift.com/products/swift-apis)
+- [API reference](https://developer.swift.com/reference)
 - [Support](https://www.swift.com/contact-us)
-- [Terms of Service](https://developer.swift.com/terms)
-- [Privacy Policy](https://www.swift.com/privacy-legal)
-- [I S O20022](https://www.swift.com/standards/iso-20022)
-- [Swift Ref](https://www.swift.com/products/swiftref)
-- [G P I](https://www.swift.com/products/swift-gpi)
-- [Postman Collection](https://www.postman.com/swift-developer-support/swift-api-sandbox-collections) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Login](https://developer.swift.com/login)
+- [Terms of service](https://developer.swift.com/terms)
+- [Privacy policy](https://www.swift.com/privacy-legal)
+- [GitHub](https://github.com/swiftinc)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 53.8 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 22.4 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.9** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/swift/](https://apis.io/providers/swift/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SWIFT: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/swift/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
